@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>学习杂谈：持久层框架那些链接数据库的操作 - Hexo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+
+
+
+
+    <meta name="description" content="为了进行数据的持久化，和数据库操作是必须的操作。 本文探讨不同的持久层框架链接数据库的操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习杂谈：持久层框架那些链接数据库的操作">
+<meta property="og:url" content="http://example.com/2023/06/10/%E5%AD%A6%E4%B9%A0%E6%9D%82%E8%B0%88%EF%BC%9A%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E9%82%A3%E4%BA%9B%E9%93%BE%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="为了进行数据的持久化，和数据库操作是必须的操作。 本文探讨不同的持久层框架链接数据库的操作。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-10T11:26:53.000Z">
+<meta property="article:modified_time" content="2023-06-11T11:53:02.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="杂谈">
+<meta property="article:tag" content="mybatis">
+<meta property="article:tag" content="JDBC">
+<meta property="article:tag" content="JDBCtemplate">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            学习杂谈：持久层框架那些链接数据库的操作
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2023-06-10T11:26:53.000Z" itemprop="datePublished">Jun 10 2023</time>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            31 minutes read (About 4703 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>为了进行数据的持久化，和数据库操作是必须的操作。 本文探讨不同的持久层框架链接数据库的操作。</p>
+<span id="more"></span>
+
+<h2 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h2><p>JDBC 为多个不同的数据库实现提供了同一的接口，使得我们可以通过JDBC来操作不同的数据库，而不需要担心数据库的具体实现。</p>
+<p>要在Java项目中使用JDBC，首先需要引进jar包。假设我们需要链接的数据库是mysql，则需要引进mysql相关的jar包。</p>
+<p>使用Maven是进行包管理是相当便捷的做法，要使用maven，首先我们需要新建一个Maven的项目或者模块。这里就用Java唯一指定IDE IntlliJ IDEA 来演示。</p>
+<figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--        mysql --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.28<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>要链接数据库，自然少不了要链接数据库的参数，比如Driver，URL，以及Username，Password等等。所以我们需要新建一个properties 来存放这些数据，而不是写死在Java代码中。</p>
+<figure class="highlight properties hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">DRIVER</span>=<span class="hljs-string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="hljs-attr">URL</span>=<span class="hljs-string">mysql://localhost:3306/demo?useUnicode=true&amp;characterEncoding=utf-8</span></span><br><span class="line"><span class="hljs-attr">USERNAME</span>=<span class="hljs-string">root</span></span><br><span class="line"><span class="hljs-attr">PASSWORD</span>=<span class="hljs-string">root</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li>加载驱动</li>
+</ol>
+<p>数据库有着不同的实现，mysql，oracle，monogDB，SQL Server等等，而每个数据库都提供一个驱动程序，驱动程序是与数据库系统进行通信的软件组件。每种数据库系统都有自己的驱动程序，这是因为不同数据库系统采用不同的协议和通信方式。</p>
+<p><strong>驱动程序充当Java程序与数据库之间的桥梁</strong>，负责处理与数据库的连接、执行SQL语句以及获取和处理查询结果等任务。它们提供了一组标准的接口和方法，使得Java程序能够通过统一的方式与不同数据库进行交互，而不需要了解底层数据库的具体实现细节。</p>
+<p>加载数据库驱动程序的常用方式是使用<code>Class.forName()</code>方法，例如：</p>
+<p>在这里，我们需要加载mysql的驱动程序，MySQL数据库的驱动程序类名为<code>com.mysql.jdbc.Driver</code>（旧版）或<code>com.mysql.cj.jdbc.Driver</code>（新版）。</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(<span class="hljs-string">"com.mysql.cj.jdbc.Driver"</span>); <span class="hljs-comment">// 加载MySQL驱动程序</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>一旦数据库驱动程序加载成功，就可以通过JDBC建立与数据库的连接并执行相关操作。</p>
+<ol start="2">
+<li>建立数据库连接</li>
+</ol>
+<p>要和数据库进程操作，我们需要和数据库建立一个会话关系，就像在web中一样，在web中，这个会话被称为httpSession, 而在数据库中，也同样存在着这个会话。 </p>
+<p>一个会话代表了客户端与数据库之间的通信通道，它允许客户端应用程序与数据库服务器进行交互。</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 2.连接数据库</span></span><br><span class="line"><span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url, username, password);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在JDBC中，通过<code>DriverManager.getConnection()</code>方法建立数据库连接时，实际上是在建立一个会话。该方法返回一个<code>Connection</code>对象，表示与数据库的连接。这个<code>Connection</code>对象封装了与数据库服务器的底层通信细节，包括连接信息、会话状态和数据传输等。</p>
+<p>通过会话，可以在连接期间执行多个SQL语句，保持数据库连接的状态。这样可以避免每次执行SQL语句都重新建立连接，提高性能和效率。当不再需要连接时，可以调用<code>Connection</code>对象的<code>close()</code>方法关闭连接，释放相关资源。</p>
+<ol start="3">
+<li>创建执行SQL语句的对象</li>
+</ol>
+<p>有了链接，我们就可以通过<code>Connection</code>对象的<code>createStatement()</code>方法创建<code>Statement</code>对象或<code>prepareStatement()</code>方法创建<code>PreparedStatement</code>对象。</p>
+<p><code>Statement</code>用于执行静态的SQL语句，而<code>PreparedStatement</code>用于执行预编译的SQL语句，可以提高性能和安全性，防止SQL注入。</p>
+<ol start="4">
+<li>执行SQL语句：</li>
+</ol>
+<p>通过<code>Statement</code>或<code>PreparedStatement</code>对象的<code>executeQuery()</code>方法执行查询语句，返回一个<code>ResultSet</code>对象，其中包含查询结果；通过<code>executeUpdate()</code>方法执行更新语句（如插入、更新、删除），返回受影响的行数。</p>
+<ol start="5">
+<li>处理结果集：</li>
+</ol>
+<p>但是仅仅是往数据库中传SQL语句，显然是不够的，我们还需要接受数据库返回的数据。</p>
+<p>数据库的操作有四种，我们将其称为CRUD，即CREATE, READ, UPDATE and DELETE，也就是我们常说的增删改查。其中查询操作返回一个结果集Result，其他的操作都返回一个int类型的整数，代表受影响的行数。</p>
+<p>所以，我们只需要编写两个函数，处理这两种不同的操作。</p>
+<p>对于查询操作</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//执行查询, 返回结果集</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ResultSet <span class="title function_">executeQuery</span><span class="hljs-params">(Connection conn,String query,Object[] params)</span> <span class="hljs-keyword">throws</span> SQLException, ClassNotFoundException{</span><br><span class="line">    <span class="hljs-type">ResultSet</span> <span class="hljs-variable">resultSet</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span>(conn != <span class="hljs-literal">null</span> &amp;&amp; !query.isEmpty() &amp;&amp; params != <span class="hljs-literal">null</span>){</span><br><span class="line">        <span class="hljs-comment">//预处理</span></span><br><span class="line">        <span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">statement</span> <span class="hljs-operator">=</span> conn.prepareStatement(query);</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; params.length;i++){</span><br><span class="line">            <span class="hljs-comment">//设置SQL 语句中的参数</span></span><br><span class="line">            statement.setObject(i+<span class="hljs-number">1</span>,params[i]);</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-comment">//执行</span></span><br><span class="line">        resultSet = statement.executeQuery();</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-keyword">return</span> resultSet;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>对于更新删除，增加操作：</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//执行更新， 返回影响行数</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="title function_">executeUpdate</span><span class="hljs-params">(Connection conn,String query,Object[] params)</span> <span class="hljs-keyword">throws</span> SQLException {</span><br><span class="line">    <span class="hljs-type">int</span> <span class="hljs-variable">affectedRows</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span>(conn != <span class="hljs-literal">null</span> &amp;&amp; !query.isEmpty() &amp;&amp; params != <span class="hljs-literal">null</span>){</span><br><span class="line">        <span class="hljs-comment">//预处理</span></span><br><span class="line">        <span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">statement</span> <span class="hljs-operator">=</span> conn.prepareStatement(query);</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; params.length;i++){</span><br><span class="line">            <span class="hljs-comment">//设置SQL 语句中的参数</span></span><br><span class="line">            statement.setObject(i+<span class="hljs-number">1</span>,params[i]);</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-comment">//执行</span></span><br><span class="line">         affectedRows = statement.executeUpdate();</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-keyword">return</span> affectedRows;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="6">
+<li>关闭连接和资源</li>
+</ol>
+<p>使用完<code>ResultSet</code>、<code>Statement</code>和<code>Connection</code>等对象后，需要调用它们的<code>close()</code>方法来关闭连接和释放资源，以免造成内存泄漏和资源浪费。</p>
+<p>我们可以编写一个函数来专门关闭这些资源，但这不是必须的，你也可以手动关闭。</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//释放链接资源</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="title function_">close</span><span class="hljs-params">(Connection conn, PreparedStatement pstmt, ResultSet resSet)</span> <span class="hljs-keyword">throws</span> SQLException {</span><br><span class="line">    <span class="hljs-keyword">if</span>(resSet != <span class="hljs-literal">null</span>)	resSet.close();</span><br><span class="line">    <span class="hljs-keyword">if</span>(pstmt != <span class="hljs-literal">null</span>)		pstmt.close();</span><br><span class="line">    <span class="hljs-keyword">if</span>(conn != <span class="hljs-literal">null</span>) 		conn.close();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>果然好麻烦，但是还没有结束，查询操作返回了一个结果集，我们还需要对这个结果集进行ORM处理，即Object Relationship Mapping。把数据库中的entity映射到一个bean上，这是最麻烦的。因为我们需要一一个处理这些字段和属性的对应关系。</p>
+<p>下面这段代码就是一个一个例子，可以看到，对于每一个对象的属性值，我们需要一一的找到对应的字段值。这还只是查询一张表，在多表联合查询的过程中，我们需要封装的对象数量更多。我们不应该花太多时间处理这些重复而又无意义的事。</p>
+<p>下面介绍的持久层框架，就是对JDBC的二次封装，免去了我们编写ORM的代码。</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> User <span class="title function_">findById</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span> {</span><br><span class="line">    Object[] params = {id};</span><br><span class="line">    ResultSet set;</span><br><span class="line">    sql = <span class="hljs-string">"SELECT * FROM smbms_user,smbms_role Where smbms_user.userRole = smbms_role.id and smbms_user.id = ?"</span>;</span><br><span class="line">    <span class="hljs-keyword">try</span> {</span><br><span class="line">        conn = DB.getConnection();</span><br><span class="line">        set = DB.executeQuery(conn, sql,params);</span><br><span class="line">        <span class="hljs-keyword">if</span>(set != <span class="hljs-literal">null</span>){</span><br><span class="line">            user = <span class="hljs-keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">            <span class="hljs-keyword">while</span> (set.next()) {</span><br><span class="line">                user.setUserRoleName(set.getString(<span class="hljs-string">"roleName"</span>));</span><br><span class="line">                user.setUserPassword(set.getString(<span class="hljs-string">"userPassword"</span>));</span><br><span class="line">                user.setId(set.getInt(<span class="hljs-string">"id"</span>));</span><br><span class="line">                user.setUserCode(set.getString(<span class="hljs-string">"userCode"</span>));</span><br><span class="line">                user.setUserName(set.getString(<span class="hljs-string">"userName"</span>));</span><br><span class="line">                user.setAddress(set.getString(<span class="hljs-string">"address"</span>));</span><br><span class="line">                user.setBirthday((Date) set.getObject(<span class="hljs-string">"birthday"</span>));</span><br><span class="line">                user.setGender(set.getInt(<span class="hljs-string">"gender"</span>));</span><br><span class="line">                user.setPhone(set.getString(<span class="hljs-string">"phone"</span>));</span><br><span class="line">                user.setIdPicPath(set.getString(<span class="hljs-string">"idPicPath"</span>));</span><br><span class="line">                user.setUserRole(set.getInt(<span class="hljs-string">"userRole"</span>));</span><br><span class="line">                user.setCreatedBy(set.getInt(<span class="hljs-string">"createdBy"</span>));</span><br><span class="line">                user.setCreationDate( set.getDate(<span class="hljs-string">"creationDate"</span>));</span><br><span class="line">                user.setModifyBy(set.getInt(<span class="hljs-string">"modifyBy"</span>));</span><br><span class="line">                user.setModifyDate(set.getDate(<span class="hljs-string">"modifyDate"</span>));</span><br><span class="line">                user.setWorkPicPath(<span class="hljs-string">"workPicPath"</span>);</span><br><span class="line">            }</span><br><span class="line">        } <span class="hljs-keyword">else</span> {</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-comment">//关闭链接和结果集</span></span><br><span class="line">        DB.close(conn,<span class="hljs-literal">null</span>,set);</span><br><span class="line">    } <span class="hljs-keyword">catch</span> (SQLException e) {</span><br><span class="line">        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">    } <span class="hljs-keyword">catch</span> (ClassNotFoundException e) {</span><br><span class="line">        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-keyword">return</span> user;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><p> MyBatis是一个优秀的持久层框架，是对JDBC的二次封装。该框架大大简化了ORM过程，MyBatis可以通过字段和属性名自动进行ORM操作。</p>
+<ol>
+<li>要使用MyBatis，当然需要引入相关的jar包：</li>
+</ol>
+<figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.5.13<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>编写MyBatis配置文件，这个配置文件我们可以从官网中拿到对应的模版，这是mybatis的核心配置文件，通过编写配置文件，我们可以得到mybatis的不同表现。</li>
+</ol>
+<p>最好将这个配置文件编写在根路径下，放在资源文件有是再好不过的选择</p>
+<figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> ?&gt;</span></span><br><span class="line"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">configuration</span></span></span><br><span class="line"><span class="hljs-meta">        <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span></span><br><span class="line"><span class="hljs-meta">        <span class="hljs-string">"https://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!--    从db.properties读取数据库属性--&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"db.properties"</span>/&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">environments</span> <span class="hljs-attr">default</span>=<span class="hljs-string">"development"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">environment</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"development"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">transactionManager</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"JDBC"</span>/&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"POOLED"</span>&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driver"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"${DRIVER}"</span>/&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"${URL}"</span>/&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"${USERNAME}"</span>/&gt;</span></span><br><span class="line">                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">""</span>/&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在这个配置文件中，我们只配置的数据源，后续的配置随着讲解的深入再一一添加</p>
+<ol start="2">
+<li><p>编写bean</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> cn.loulan.bean;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Data</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="title class_">Student</span> {</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> id;</span><br><span class="line">    <span class="hljs-keyword">private</span> String name;</span><br><span class="line">    <span class="hljs-keyword">private</span> String sex;</span><br><span class="line">    <span class="hljs-keyword">private</span> String major;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>编写接口</p>
+</li>
+</ol>
+<p>和JDBC一样，我们需要编写接口，在接口中定义方法。面向接口编程可以大大降低层与层之间的耦合度。</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> cn.loulan.dao;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> cn.loulan.bean.Student;</span><br><span class="line"><span class="hljs-keyword">import</span> org.apache.ibatis.annotations.Param;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="title class_">StudentMapper</span> {</span><br><span class="line">    <span class="hljs-type">int</span> <span class="title function_">insert</span><span class="hljs-params">(Student student)</span>;</span><br><span class="line">    <span class="hljs-type">int</span> <span class="title function_">update</span><span class="hljs-params">(Student student)</span>;</span><br><span class="line">    Student <span class="title function_">getStudent</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span>;</span><br><span class="line">    List&lt;Student&gt; <span class="title function_">getAll</span><span class="hljs-params">()</span>;</span><br><span class="line">    <span class="hljs-type">int</span> <span class="title function_">delete</span><span class="hljs-params">(<span class="hljs-meta">@Param("id")</span> <span class="hljs-type">int</span> id)</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>不同的是，由于不需要编写接口实现类了，Mybatis会通过反射的方式在程序运行时生成实现类。所以我们需要使用<code>@Param</code>注解来指定参数，如果参数只有一个则不需要显式的给出，参数类型是复杂类型如java bean时也不需要显式的给出。</p>
+<ol start="4">
+<li>编写mapper</li>
+</ol>
+<p>没有了实现了类，但是我们还需要编写mapper文件，其实也可以直接使用注解的方式定义SQL语句，但是这样对于较为复杂的SQL语句代码的可读性将大大降低。所以我们还是基于xml的的方式。</p>
+<p>mapper使用xml格式，且需要保证与接口名称相同。 在mapper中，要指定命名空间，这个命名空间指向接口类，使用接口类的全限定名。</p>
+<figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> ?&gt;</span></span><br><span class="line"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span></span></span><br><span class="line"><span class="hljs-meta">        <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="hljs-meta">        <span class="hljs-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"cn.loulan.dao.StudentMapper"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getStudent"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"cn.loulan.bean.Student"</span>&gt;</span></span><br><span class="line">        select * from student where id=#{id};</span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>和JDBC一样，我们需要和数据库建立连接，拿到会话，在Mybatis中，这个会话被称为Sql Session要拿到这个SqlSession, 还有点麻烦，这里Mybatis使用了一个设计模式，叫做建造者模式。这是GOF23种设计模式的创造型设计模式之一。要理解建造者模式，我们需要首先了解工厂模式。</p>
+<p>工厂模式在spring中有着大量的运用，比如动态代理中Bean的实例化就是工厂模式的一个运用。每一个bean都对应一个工厂，用来生成这个bean。这里的工厂模式确实的说是静态工厂模式，也叫做简单工厂模式，这个设计模式并不在GOF23种设计模式之内，但是运用的也比较多，而且简单工厂模式其实算得上是工厂模式的一个特例。</p>
+<p>要理解工厂模式，首先我们需要知道为什么需要工厂模式？</p>
+<p>面向对象有七大设计原则，第一个便是单一职责原则。顾名思义就是一个类只负责一个职责。我们使用一个类，不需要担心这个是如何被创建出来的，就像在生活中我们买一台电脑不需要关心这个电脑是如何生产出来的。电脑的生产由生产这个电脑的工厂负责。相较于自己造一台电脑，显然去买一台工厂生产的电脑更为现实。</p>
+<p>简单工厂模式就是这样思想的一种体验，在软件开发过程中，我们往往需要实例化一些来着同一个父类的对象, 这个父类定义了这个工厂下所以对象的通用方法。为此专门提供一个工厂来帮我们实例化这个对象，我们只需要提供不同的参数，就可以得到不同的实例化对象，在Java开发中，我们常常把工厂类的实例化这个对象的方法定义为一个静态方法，这样，我们就不需要实例化这个类就可以调用这个方法了，这也就是静态工厂模式名字的来源。</p>
+<p>简单工厂模式包含三个重要的角色：</p>
+<ol>
+<li>工厂 Factory:  工厂模式的核心角色，这个角色提供了一个静态方法，这个方法负责实例化对象并返回，返回类型为抽象产品。</li>
+<li>抽象产品 Product： 抽象产品是工厂建造的所以具体对象的父类，负责描述所以实例化对象的公共接口。它的引入使得系统更加灵活，在工厂类中只需要定义一个方法，因为所以的具体产品对象都是其子类对象。</li>
+<li>具体产品 ConcreteProduct： 简单工厂模式的创建目标，是抽象产品的具体表现，需要实现抽象产品中定义的方法。</li>
+</ol>
+<!--to do... 补充工厂模式，建造者模式-->
+
+<p>在Mybatis中，便使用工厂模式这一思想。要拿到sqlsession，我们需要先拿到工厂对象，通过读取配置文件，MyBatis会创建一个SqlSessionFactory对象。通过工厂对象的openSession我们就可以拿到这个Sql Session了。SqlSession是与数据库进行交互的主要接口，它封装了数据库会话和执行SQL操作的方法。</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> cn.loulan.dao;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> cn.loulan.bean.Student;</span><br><span class="line"><span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="hljs-keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="title class_">TestStudent</span> {</span><br><span class="line">    <span class="hljs-meta">@Test</span></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="title function_">testGetStudent</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception {</span><br><span class="line">        <span class="hljs-comment">//1. 加载mybatis配置文件</span></span><br><span class="line">        <span class="hljs-type">InputStream</span> <span class="hljs-variable">resourceAsStream</span> <span class="hljs-operator">=</span> TestStudent.class.getClassLoader().getResourceAsStream(<span class="hljs-string">"mybatis.xml"</span>);</span><br><span class="line">      <span class="hljs-comment">//2. 拿到工厂对象</span></span><br><span class="line">        <span class="hljs-type">SqlSessionFactory</span> <span class="hljs-variable">sqlSessionFactory</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(resourceAsStream);</span><br><span class="line">      <span class="hljs-comment">//3. sqlSession对象</span></span><br><span class="line">        <span class="hljs-type">SqlSession</span> <span class="hljs-variable">sqlSession</span> <span class="hljs-operator">=</span> sqlSessionFactory.openSession();</span><br><span class="line">      <span class="hljs-comment">//4. 拿到接口实现类</span></span><br><span class="line">        <span class="hljs-type">StudentMapper</span> <span class="hljs-variable">mapper</span> <span class="hljs-operator">=</span> sqlSession.getMapper(StudentMapper.class);</span><br><span class="line">      <span class="hljs-comment">//5. 关闭sql session释放资源</span></span><br><span class="line">        sqlSession.close();</span><br><span class="line">      <span class="hljs-comment">//6. 输出查询结果</span></span><br><span class="line">        <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> mapper.getStudent(<span class="hljs-number">1</span>);</span><br><span class="line">        System.out.println(student);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<!--饿了，吃饭去了-->
+
+<!--
+我来了，继续继续。哎，越来越搞不懂自己了，一躺在床上就会想瑟瑟。感觉午觉睡了根没睡一样，很奇怪啊，一躺下就忍不住想Moon。我也不知道我喜欢她什么，高中时期的暗恋对象能持续这么久的影响我。她都邀请我去她家玩了，虽然确实很想去，但是自己想去的动机总感觉不纯。而且也怪不好意思的，她姐姐我也不熟，去她家玩的话自己也会很难办。且不说往返的机票钱就不是一个小数目，为什么要跑到这么远上大学呢，我又开始怀疑自己了。要是在上海读书的话就方便很多了。哎～加上还有准备考研，准备考研，一直都在准备，准备着准备着，到目前也没什么进度，感觉就像默认自己已经要二战了一样。好可悲啊，哪有还没考就想着下一次的啊，怎么说呢，也不能讨厌这样的自己。要和自己和平相处，不要和自己为敌。假期把CSAPP搞定，一定要加油！
+-->
+
+
+
+<p>到这里Mybatis链接数据库的操作就结束了，虽然还有很多没有设计，比如事务管理，对象关系映射啊，但是这又不是Mybatis教程，要看mybatis教程的话移步博客文章mybatis。</p>
+<p>总得来说，mybatis确实相较于直接用JDBC方便很多，自己再也不用处理令人头疼的结果集了，只需要写些配置文件就好了，效率提高了很多。但是听说到了spring boot就更方便了，总感觉学不完啊。</p>
+<h2 id="Spring集成Mybatis框架"><a href="#Spring集成Mybatis框架" class="headerlink" title="Spring集成Mybatis框架"></a>Spring集成Mybatis框架</h2><p>接下来就是spring集成mybatis框架了，集成spring可以通过依赖注入（Dependency Injection）来降低层与层之间的耦合度，具体来说就是对象不需要我们自己new了，对象间关系的维护也不需要我们自己维护了，全部交给Spring来管理。</p>
+<p>spring集成mybatis框架感觉就是把mybatis配置移到了Spring的配置中去，以前是mybatis通过反射实例化对象，变成了spring和mybatis共同完成了。</p>
+<ol>
+<li>MyBatis部分：MyBatis通过Mapper接口的代理方式来执行SQL操作。在MyBatis中，通过配置映射文件（Mapper XML）来定义SQL语句和映射关系。MyBatis会根据映射文件中的配置，动态生成Mapper接口的代理对象，实现了Mapper接口中定义的方法。</li>
+<li>Spring部分：Spring负责管理和配置应用程序中的各个组件，包括Mapper接口的实例化和依赖注入。在集成MyBatis时，Spring会扫描指定的包路径，检测并实例化Mapper接口的代理对象。Spring提供了<code>@MapperScan</code>注解来自动扫描和实例化Mapper接口。</li>
+</ol>
+<p>当Spring实例化Mapper接口时，它会使用MyBatis提供的<code>MapperProxyFactory</code>类来创建Mapper接口的代理对象。该代理对象在执行方法时，会委托给MyBatis的底层实现来执行相应的SQL操作。</p>
+<p>通过Spring和MyBatis的协作，实现了Mapper接口的实例化和使用，使得开发者可以在Spring中轻松地使用MyBatis进行数据库操作。同时，Spring还负责管理事务、数据源配置等与数据库相关的事务处理和连接管理工作，与MyBatis相结合提供了更完整的数据库访问解决方案。</p>
+<p>以上内容全由chatGPT生成，我是不会的。</p>
+<p>继续。</p>
+<p>照例，先引入jar包</p>
+<figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-spring<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>druid<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.16<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-tx<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>6.0.8<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>6.0.8<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!--        MyBatis--&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.5.13<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>6.0.8<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>差不多就这些了，主要包括spring框架的依赖，mybatis依赖，spring集成mybatis的依赖，德鲁伊的依赖。</p>
+<p>累了，不想写了。下次补充。。</p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E6%9D%82%E8%B0%88/">#杂谈</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/mybatis/">#mybatis</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/JDBC/">#JDBC</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/JDBCtemplate/">#JDBCtemplate</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2023/07/09/Writing-Your-Own-Unix-Shell/">Writing Your Own Unix Shell</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2023/06/09/%E6%89%8B%E5%86%99%E7%AE%80%E6%98%93Spring%E6%A1%86%E6%9E%B6/">手写简易Spring框架</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="notification is-danger">
+    You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.
+</div>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<div id="disqus_thread">
+    
+    <div class="notification is-danger">
+        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
+    </div>
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2025 John Doe&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery > p > .gallery-item').unwrap();
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

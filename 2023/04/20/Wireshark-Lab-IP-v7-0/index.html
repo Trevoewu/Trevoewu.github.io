@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>Wireshark Lab: IP v7.0 - Hexo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="在本实验中, 我们将研究 IP 协议,重点关注IP datagram. 我们将通过分析在执行 traceroute 程序发送和接收的一系列 IP 数据报的过程来完成这个实验,我们将研究IP datagram 中的各个字段(fields)，并详细研究 IP fragmentation 的方法">
+
+
+
+
+
+    <meta name="description" content="在本实验中, 我们将研究 IP 协议,重点关注IP datagram. 我们将通过分析在执行 traceroute 程序发送和接收的一系列 IP 数据报的过程来完成这个实验,我们将研究IP datagram 中的各个字段(fields)，并详细研究 IP fragmentation 的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wireshark Lab: IP v7.0">
+<meta property="og:url" content="http://example.com/2023/04/20/Wireshark-Lab-IP-v7-0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在本实验中, 我们将研究 IP 协议,重点关注IP datagram. 我们将通过分析在执行 traceroute 程序发送和接收的一系列 IP 数据报的过程来完成这个实验,我们将研究IP datagram 中的各个字段(fields)，并详细研究 IP fragmentation 的方法">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421113757555.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421113848009.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421113947335.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114009587.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114026434.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114245968.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114303180.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114317964.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114327978.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114340203.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114350725.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114403647.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114415389.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114431692.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114440735.png">
+<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114449611.png">
+<meta property="article:published_time" content="2023-04-20T10:22:06.000Z">
+<meta property="article:modified_time" content="2023-04-21T03:44:49.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="computer network">
+<meta property="article:tag" content="lab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421113757555.png">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Wireshark Lab: IP v7.0
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2023-04-20T10:22:06.000Z" itemprop="datePublished">Apr 20 2023</time>
+            
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            12 minutes read (About 1727 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><ul>
+<li>Select the first ICMP Echo Request message sent by your computer, and expand the Internet Protocol part of the packet in the packet details window.(选择您的计算机发送的第一个 ICMP Echo Request 消息，并在数据包详细信息窗口中展开数据包的 Internet 协议部分)<br>不知道为什么, 我的电脑只能收到Time to live exceeded报文段.</li>
+</ul>
+<span id="more"></span>
+<p>结果是因为我在过滤了ICMP, 而<strong>traceroute默认使用UDP而不是ICMP</strong>, 所以只能收到路由器发给我的ICMP time to live exceeded 报文,告诉我的数据包被干掉了. </p>
+<p>tracert 默认使用 ICMP 包探测，traceroute 使用 UDP 包，也可以使用 ICMP 和 TCP 包探测, 带上参数-T即可.</p>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-I      Use ICMP ECHO instead of UDP datagrams.  (A synonym for "-P icmp").</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">traceroute baidu.com 2000  </span><br><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash">使用baidu测试, 默认使用UDP, 数据报大小为2000byte</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><p>What is the IP address of your computer?</p>
+</li>
+<li><p>在 IP header 中，上层协议字段的值是多少?</p>
+<p>我的IP地址: 10.51.172.226 </p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421113757555.png" alt="image-20230421113757555"></p>
+<p>这是traceroute发送的第一个数据报, 可以得到以下信息: </p>
+<ul>
+<li>该数据报是IP数据报, 上层协议为UDP</li>
+<li>数据报被分片了, More Fragment字段被设为1</li>
+<li>源IP是10.51.172.226, 这是host IP</li>
+<li>目标IP是110,242,68,66, 这是Baidu.com的IP地址, 我用百度来测试.</li>
+</ul>
+</li>
+<li><p>IP datagram 的有效负载中有多少 bytes? 说明如何 确定 payload bytes 的数。</p>
+</li>
+</ul>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421113848009.png" alt="image-20230421113848009"></p>
+<p>payload = Total Len - header Len = 1500 - 20 = 1480, 是的, 我直接发送了2000byte的报文</p>
+<ul>
+<li><p>此 IP 数据报是否已被分段(fragmented)?解释您如何确定数据报是否已被分段(fragmented)</p>
+<p>是的, 前文有提到, 这里不再赘述.</p>
+</li>
+</ul>
+<blockquote>
+<p>接下来，通过单击 Source 列标题，根据 IP 源地址对跟踪的数据包进行排序，一个小的向下箭头应出现在 Source 旁边，如果箭头指向上方请再次单击“Source column header”。选择计算机发送的第一个 ICMP Echo Request 消息，然后展开“details of selected packet header”窗口中的 Internet 协议部分。在“listing of captured packets”窗 口中，您应该在第一个 ICMP 下面看到所有后续 ICMP 消息(可能还有计算器上运行的其他协议发送的其他散布数据包)，使用向下箭头浏览计算器发送的 ICMP 消息。</p>
+</blockquote>
+<ul>
+<li><p>在您的计算器发送的这一系列 ICMP 消息中，IP 数据报中的哪些字段总有改变</p>
+<p>使用</p>
+<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">traceroute -I gaia.cs.umass.edu -80</span><br><span class="line"><span class="hljs-comment"># 用作者给的网站测试, -I表示使用ICMP</span></span><br><span class="line"><span class="hljs-comment"># The default probe datagram length is 40 bytes[traceroute manual]</span></span><br><span class="line"><span class="hljs-comment"># 但是我使用作者提议用56作为数据报(ip datagrame)大小时, 收到以下警告: </span></span><br><span class="line"><span class="hljs-comment"># traceroute: packet length must be &gt; 71</span></span><br><span class="line"><span class="hljs-comment"># 所以这里数据报大小设为80, 实际上, 我使用不带数据报大小参数的命令时, 默认数据报大小为1380</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>再次抓包, 由于traceroute实际上会发送三个ICMP的数据报, 所以三个为一组.  所以可发现每一组的ID值差3, 当然是因为一组发了三个ICMP数据报啊..</p>
+</li>
+</ul>
+<p>第一个:</p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421113947335.png" alt="image-20230421113947335"></p>
+<p>第二个: </p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114009587.png" alt="image-20230421114009587"></p>
+<p>第三个: </p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114026434.png" alt="image-20230421114026434"></p>
+<p>可以发现, Id, TTL, Header checksum改变了.</p>
+<ul>
+<li><p>哪些字段保持不变? 哪个字段必须保持不变? 哪些字段必须更改? 为什么?</p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114245968.png" alt="image-20230421114245968"></p>
+<ul>
+<li>Version, Header Length , TOS(Differentiate Services Field差异化服务领域), Flag, TTL, Protocol, SIP,DIP保持不变</li>
+<li>Version, Protocol, TOS, Header Len必须保持不变.</li>
+<li>Identification, checksum,TTL必须更改</li>
+</ul>
+</li>
+<li><p>描述您在 IP 数据报的标识字段的值中看到的模式</p>
+</li>
+</ul>
+<p>每发一个ICMP的数据报, ID字段加一(不分片的情况下, 分片时一个IP数据报的不同片具有相同的ID)</p>
+<ul>
+<li>下一步(数据包仍按来源地址排序)查找最近的(第一跳)路由器发送到您的计算器的一系列 ICMP TTL 超出的回复讯息。</li>
+<li>ID 字段和 TTL 字段的值是多少?</li>
+</ul>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114303180.png" alt="image-20230421114303180"></p>
+<ul>
+<li><p>对于最近(第一跳)路由器发送到您的计算器的所有 ICMP TTL 超出的回复，这些值是否保持不变?为什么?</p>
+<p>TTL保持不变, 但ID改变了. TTL都为64(可以改变, 理论上可以为1, 因为第一台路由器到我的主机一跳可达)</p>
+<p>在不管是发回给我的time to live exceeded还是ICMP reply TTL的值都为64, 可能是默认的值.</p>
+</li>
+</ul>
+<blockquote>
+<p>单击“时间”列，再次按时间对数据包列表进行排序。</p>
+</blockquote>
+<ul>
+<li>在将 pingplotter 中的数据包大小更改为 2000 后，查找计算机发送的第一个 ICMP Echo Request 消息。该消息是否已分片为多个 IP 数据报?</li>
+<li>打印出碎片 IP 数据报的第一个片段。 IP 头中的哪些信息表明数据报已碎片 化? IP 头中的哪些信息表明这是第一个片段还是后一个片段? 这个 IP 数据报有多长?</li>
+<li>打印出碎片 IP 数据报的第二个片段。 IP 标头中的哪些信息表明这不是第一 个数据报片段? 是否还有更多的片段? 你是如何知道的?</li>
+</ul>
+<p>是的, 该消息被分片了, 可以通过flag字段看出, Fragmen Offset 为1480, 而More Fragment为0 ,告诉这是第二个message, 那第一个到哪里去了呢?</p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114317964.png" alt="image-20230421114317964"></p>
+<p>Wireshark告诉我在frame 73, 于是我去寻找frame73</p>
+<p><em>73frame和74frame的payload 和 为 1980, 因为规定了ICMP的IP数据报大小为2000, 但由于IP头部的20byte, 实际的payload恰好为1980byte</em></p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114327978.png" alt="image-20230421114327978"></p>
+<p>注意到发到第一个message竟然不是ICMPmessage, 而是一个IPdatagram</p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114340203.png" alt="image-20230421114340203"></p>
+<p>打开IP头部, 我们发现, 这仍然是一个ICMP的数据报, 但是在IP的数据部分并没有ICMP头部.</p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114350725.png" alt="image-20230421114350725"></p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114403647.png" alt="image-20230421114403647"></p>
+<ul>
+<li><p>在第一个和第二个片段中，IP 标头中哪些字段发生了变化?</p>
+<p>第一个fregment: </p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114415389.png" alt="image-20230421114415389"></p>
+<p>第二片: </p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114431692.png" alt="image-20230421114431692"></p>
+<p>注意到红色部分发送了改变, 而蓝色部分没有改变, IP数据报用ID来标识多个片是否属于同一个IP数据报.</p>
+</li>
+</ul>
+<blockquote>
+<p>现在，在将 pingplotter 中的数据包大小更改为 3500 后，找到计算机发送的第一个 ICMP Echo Request 消息。</p>
+</blockquote>
+<ul>
+<li><p>从原始数据报创建了多少个片?</p>
+<p>三个片</p>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114440735.png" alt="image-20230421114440735"></p>
+</li>
+<li><p>片段中 IP 标头中的哪些字段发生了变化?</p>
+<p>和上一个结论相同, 红色部分发送了改变, 而蓝色部分没有改变, IP数据报用ID来标识多个片是否属于同一个IP数据报.</p>
+</li>
+</ul>
+<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114449611.png" alt="image-20230421114449611"></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/computer-network/">#computer network</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/lab/">#lab</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2023/04/20/Wireshark-lab-HTTP/">Wireshark lab HTTP</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-next">
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="notification is-danger">
+    You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.
+</div>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<div id="disqus_thread">
+    
+    <div class="notification is-danger">
+        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
+    </div>
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2025 John Doe&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery > p > .gallery-item').unwrap();
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

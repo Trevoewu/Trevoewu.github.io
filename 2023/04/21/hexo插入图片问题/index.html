@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>hexo插入图片问题 - Hexo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="昨天刚搭建完博客, 发现直接写markdown, hexo 生成后图片全部都没法显示了, 毕竟图片都在本地, 以绝对路径的方式存储的, markdown的路径的hexo的路径不匹配.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo插入图片问题">
+<meta property="og:url" content="http://example.com/2023/04/21/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="昨天刚搭建完博客, 发现直接写markdown, hexo 生成后图片全部都没法显示了, 毕竟图片都在本地, 以绝对路径的方式存储的, markdown的路径的hexo的路径不匹配.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/image-20230421120557507.png">
+<meta property="og:image" content="http://example.com/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/image-20230421121112744.png">
+<meta property="og:image" content="http://example.com/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/image-20230421124001298.png">
+<meta property="og:image" content="http://example.com/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/image-20230421124655253.png">
+<meta property="article:published_time" content="2023-04-21T03:46:44.000Z">
+<meta property="article:modified_time" content="2023-04-21T04:47:56.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="日常">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/image-20230421120557507.png">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            hexo插入图片问题
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2023-04-21T03:46:44.000Z" itemprop="datePublished">Apr 21 2023</time>
+            
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            8 minutes read (About 1148 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>昨天刚搭建完博客, 发现直接写markdown, hexo 生成后图片全部都没法显示了, 毕竟图片都在本地, 以绝对路径的方式存储的, markdown的路径的hexo的路径不匹配. </p>
+<span id="more"></span>
+
+<p>以前搭博客的时候这个图片问题就老是困扰着我, 我用typora编写的文章转到html之后, 我还得把图片也引到项目目录来, 然后在一个个的该路径. 体验可以说是很差了, 这也导致哪怕写完文章, 我也懒得发布了, 太麻烦. </p>
+<p>这次用hexo搭建也遇到了同样的问题, 按照老方法, 我能想到的就只有把图片全部拉过来了, 我直接把全部图片<code>mv</code>到了public目录的imag目录下, 部署到github上的时候, 由于图片太多了, 进度条老是卡住, 我只好放弃了. 我直接<code>ctl+c</code>, <code>hexo clean</code>,<code>hexo s</code>.这时候我还不知道<code>hexo clean</code>意味这什么, 只是看教程大家都是这样做的, 结果, 结果hexo把我pubilc目录下的文件全部删了…, 我的图片, 也全没了. </p>
+<p>今天发现一个绝好的解决方案, 将Typora和hexo完美结合起来. </p>
+<h3 id="第一步-修改hexo的站点配置文件-config-yml"><a href="#第一步-修改hexo的站点配置文件-config-yml" class="headerlink" title="第一步 修改hexo的站点配置文件_config.yml"></a>第一步 修改hexo的站点配置文件_config.yml</h3><p>首先安装插件:</p>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-marked</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在_config.yml搜索<code>post_asset_folder</code>改为true 如下:</p>
+<figure class="highlight yml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">post_asset_folder:</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-attr">marked:</span></span><br><span class="line">  <span class="hljs-attr">prependRoot:</span> <span class="hljs-literal">true</span></span><br><span class="line">  <span class="hljs-attr">postAsset:</span> <span class="hljs-literal">true</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>修改之后会开启 Hexo 的文章资源文件管理功能。Hexo 将会在我们每一次通过 <code>hexo new &lt;title&gt;</code> 命令创建新文章时自动创建一个同名文件夹，并在执行<code>hexo g</code>的时候连同图片以前复制到public目录下(网站的根目录).于是我们便可以将文章所引用的相关资源放到这个同名文件夹下，然后通过相对路径引用。例如，你把一个 <code>example.jpg</code> 图片放在了这个同名文件夹中，使用相对路径的常规 markdown 语法 <code>![](example/example.jpg)</code>即可访问 。</p>
+<p>  也就是这样</p>
+<p><img src="/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/image-20230421120557507.png" alt="image-20230421120557507"></p>
+<p>但是呢, 执行<code>hexo g</code>生成的时候, hexo会把sourec目录下的_posts文件的转化为成html, 并保存在pubilc对应日期的路径中,<img src="/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/image-20230421121112744.png" alt="image-20230421121112744"></p>
+<p>可以看到, 此时index中的图片路径和markdown的图片路径是冲突的. </p>
+<figure class="highlight markdown hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typora的路径使用: </span><br><span class="line">![](<span class="hljs-link">./example/example.jpg</span>)</span><br><span class="line">这样页面上的img路径就会是:</span><br><span class="line">/你的文章标题/example/example.jpg</span><br><span class="line">正确的图片地址: </span><br><span class="line">/example/example.jpg</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这是因为<code>hexo g</code>把文件夹里面图片复制过来了, 但并没有复制整个图片的文件夹. </p>
+<p>所以我只需要拿到当前博客的路径，直接加上图片名字就行.</p>
+<h3 id="第二步-编写路径替换脚本"><a href="#第二步-编写路径替换脚本" class="headerlink" title="第二步, 编写路径替换脚本"></a>第二步, 编写路径替换脚本</h3><p>在全局js文件 themes\next\source\js\next-boot.js中，编写img 路径替换脚本</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 脚本提供者</span></span><br><span class="line"><span class="hljs-comment">//http://songpengpeng.com</span></span><br><span class="line"><span class="hljs-keyword">var</span> images = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="hljs-string">"img"</span>);</span><br><span class="line"><span class="hljs-keyword">var</span> loHref = <span class="variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span></span><br><span class="line"><span class="hljs-keyword">let</span> baseHref = loHref.<span class="title function_">substring</span>(<span class="hljs-number">0</span>,loHref.<span class="title function_">lastIndexOf</span>(<span class="hljs-string">"/"</span>)+<span class="hljs-number">1</span>)</span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;images.<span class="hljs-property">length</span>; i++) {</span><br><span class="line">    <span class="hljs-keyword">let</span> executeNum = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">let</span> src = images[i][<span class="hljs-string">'src'</span>]</span><br><span class="line">    <span class="hljs-keyword">let</span> img = <span class="hljs-keyword">new</span> <span class="title class_">Image</span>();</span><br><span class="line">    img.<span class="hljs-property">src</span> = src</span><br><span class="line">    img.<span class="hljs-property">onload</span>= <span class="hljs-function">()=&gt;</span> {</span><br><span class="line">    }</span><br><span class="line">    img.<span class="hljs-property">onerror</span>= <span class="hljs-function">()=&gt;</span> {</span><br><span class="line">        executeNum ++ ;</span><br><span class="line">        <span class="title function_">handAMark</span>(src)</span><br><span class="line">        <span class="hljs-keyword">if</span>(executeNum&gt;<span class="hljs-number">3</span>){</span><br><span class="line">            <span class="hljs-keyword">return</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-keyword">let</span> fileName = src.<span class="title function_">substring</span>(src.<span class="title function_">lastIndexOf</span>(<span class="hljs-string">"/"</span>)+<span class="hljs-number">1</span>);</span><br><span class="line">        images[i].<span class="hljs-property">src</span>= baseHref+fileName</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="hljs-keyword">function</span>  <span class="title function_">handAMark</span>(<span class="hljs-params">src</span>){</span><br><span class="line">    <span class="hljs-keyword">var</span> <span class="hljs-keyword">as</span> = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="hljs-string">"fancybox"</span>);</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;<span class="hljs-keyword">as</span>.<span class="hljs-property">length</span>; i++) {</span><br><span class="line">        <span class="hljs-keyword">let</span> executeNum = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">let</span> href = <span class="hljs-keyword">as</span>[i][<span class="hljs-string">'href'</span>]</span><br><span class="line">        <span class="hljs-keyword">if</span>(href==src){</span><br><span class="line">            <span class="hljs-keyword">let</span> img = <span class="hljs-keyword">new</span> <span class="title class_">Image</span>();</span><br><span class="line">            img.<span class="hljs-property">src</span> = src</span><br><span class="line"></span><br><span class="line">            img.<span class="hljs-property">onload</span>= <span class="hljs-function">()=&gt;</span> {</span><br><span class="line">            }</span><br><span class="line">            img.<span class="hljs-property">onerror</span>= <span class="hljs-function">()=&gt;</span> {</span><br><span class="line">                executeNum ++ ;</span><br><span class="line">                <span class="hljs-keyword">if</span>(executeNum&gt;<span class="hljs-number">3</span>){</span><br><span class="line">                    <span class="hljs-keyword">return</span>;</span><br><span class="line">                }</span><br><span class="line">                <span class="hljs-keyword">let</span> fileName = src.<span class="title function_">substring</span>(src.<span class="title function_">lastIndexOf</span>(<span class="hljs-string">"/"</span>)+<span class="hljs-number">1</span>);</span><br><span class="line">                <span class="hljs-keyword">as</span>[i].<span class="hljs-property">href</span>= baseHref+fileName</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>这样, 使用<code>hexo g</code>生成的时候, 就会自动将图片的路径替换. </p>
+<h3 id="第三步-搭配typora才是最佳"><a href="#第三步-搭配typora才是最佳" class="headerlink" title="第三步, 搭配typora才是最佳"></a>第三步, 搭配typora才是最佳</h3><p>但是还是不够方便啊, 我们得先把图片放到文章的资源文件夹中. Typora对插图片的支持非常好, 可以在复制图片的同时, 把物品保存在对应的文件夹中</p>
+<p>打开Typora, <code>⌘+,</code>进入系统偏好设置, 点击image选项卡, 修改为以下格式: </p>
+<p>这样当插入图片的时候, 会自动把图片放到当前目录的markdown相名的文件夹中, 恰好, Hexo 在我们每一次通过 <code>hexo new &lt;title&gt;</code> 命令创建新文章时自动创建一个同名文件夹. </p>
+<p>完美!</p>
+<p><img src="/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/image-20230421124001298.png" alt="image-20230421124001298"></p>
+<p>这样, 我们在Typora上写文章, 完全不用担心插入图片问题, 而且文章的图片也会有序的存放, 方面日后的管理. </p>
+<p>现在我们只需要<code>hexo n 'title'</code>然后在Typora上写文章, 就可以直接推到博客了, 照片也可以正常显示. </p>
+<p>你看, 我写完这篇文章的时候, hexo已经完美的生成网页了. </p>
+<p>这太棒了, 不是吗? </p>
+<p><img src="/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/image-20230421124655253.png" alt="image-20230421124655253"></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E6%97%A5%E5%B8%B8/">#日常</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2023/04/21/%E7%BA%AA%E5%BF%B5%E6%8B%A5%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">纪念拥有了自己的博客</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2023/04/21/%E4%BD%BF%E7%94%A8hexo%E9%87%8D%E6%96%B0%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">使用hexo重新搭建博客</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="notification is-danger">
+    You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.
+</div>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<div id="disqus_thread">
+    
+    <div class="notification is-danger">
+        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
+    </div>
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2025 John Doe&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery > p > .gallery-item').unwrap();
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
