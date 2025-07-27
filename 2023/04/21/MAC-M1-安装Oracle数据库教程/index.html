@@ -19,12 +19,12 @@
     <meta name="description" content="oracle目前还没有支持M1的版本, 本教程使用SSH来远程登录oracle服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MAC M1 安装Oracle数据库教程">
-<meta property="og:url" content="http://example.com/2023/04/21/MAC-M1-%E5%AE%89%E8%A3%85Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:url" content="https://github.com/trevoewu/trevoewu.github.io/2023/04/21/MAC-M1-%E5%AE%89%E8%A3%85Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="oracle目前还没有支持M1的版本, 本教程使用SSH来远程登录oracle服务器">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/Users/trevorwu/Library/Application%20Support/typora-user-images/image-20220929221736551.png">
-<meta property="og:image" content="http://example.com/Users/trevorwu/Library/Application%20Support/typora-user-images/image-20220929221807569.png">
+<meta property="og:image" content="https://github.com/Users/trevorwu/Library/Application%20Support/typora-user-images/image-20220929221736551.png">
+<meta property="og:image" content="https://github.com/Users/trevorwu/Library/Application%20Support/typora-user-images/image-20220929221807569.png">
 <meta property="article:published_time" content="2023-04-21T12:35:34.000Z">
 <meta property="article:modified_time" content="2025-07-22T22:39:56.987Z">
 <meta property="article:author" content="John Doe">
@@ -32,7 +32,7 @@
 <meta property="article:tag" content="oracle">
 <meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/Users/trevorwu/Library/Application%20Support/typora-user-images/image-20220929221736551.png">
+<meta name="twitter:image" content="https://github.com/Users/trevorwu/Library/Application%20Support/typora-user-images/image-20220929221736551.png">
 
 
 
@@ -52,7 +52,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
 
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/trevoewu/trevoewu.github.io/css/style.css">
 
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -78,9 +78,9 @@
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item navbar-logo" href="/">
+            <a class="navbar-item navbar-logo" href="/trevoewu/trevoewu.github.io/">
                 
-                <img src="/images/logo.png" alt="" height="28">
+                <img src="/trevoewu/trevoewu.github.io/images/logo.png" alt="" height="28">
                 
             </a>
             <div class="navbar-burger">
@@ -93,10 +93,10 @@
         <div class="navbar-menu navbar-start">
             
             <a class="navbar-item "
-               href="/archives">Archives</a>
+               href="/trevoewu/trevoewu.github.io/archives">Archives</a>
             
             <a class="navbar-item "
-               href="/about">About</a>
+               href="/trevoewu/trevoewu.github.io/about">About</a>
             
         </div>
         
@@ -108,7 +108,7 @@
             
             
             
-            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos">
                 
                 <i class="fab fa-github"></i>
                 
@@ -136,7 +136,7 @@
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/mac%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">mac使用指南</a>
+            <a class="article-category-link" href="/trevoewu/trevoewu.github.io/categories/mac%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">mac使用指南</a>
         </span>
         
         
@@ -227,11 +227,11 @@
     
     <div class="columns is-variable is-1 is-multiline is-mobile">
     
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/mac%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">#mac使用指南</a></span>
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/trevoewu/trevoewu.github.io/tags/mac%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">#mac使用指南</a></span>
     
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/oracle/">#oracle</a></span>
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/trevoewu/trevoewu.github.io/tags/oracle/">#oracle</a></span>
     
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E6%95%99%E7%A8%8B/">#教程</a></span>
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/trevoewu/trevoewu.github.io/tags/%E6%95%99%E7%A8%8B/">#教程</a></span>
     
     </div>
     
@@ -239,12 +239,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2023/04/21/Wireshark-Lab-TCP/">Wireshark Lab: TCP</a>
+            <a href="/trevoewu/trevoewu.github.io/2023/04/21/Wireshark-Lab-TCP/">Wireshark Lab: TCP</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2023/04/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/">计算机系统漫游</a>
+            <a href="/trevoewu/trevoewu.github.io/2023/04/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/">计算机系统漫游</a>
             
         </span>
     </div>
@@ -283,7 +283,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2025 John Doe&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -292,7 +292,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos">
                     
                     GitHub
                     
@@ -449,7 +449,7 @@
 
 
 
-<script src="/js/script.js"></script>
+<script src="/trevoewu/trevoewu.github.io/js/script.js"></script>
 
 
     
@@ -475,13 +475,13 @@
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
-            CONTENT_URL: '/content.json',
+            CONTENT_URL: '/trevoewu/trevoewu.github.io/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
 
-<script src="/js/insight.js"></script>
+<script src="/trevoewu/trevoewu.github.io/js/insight.js"></script>
 
     
 </body>

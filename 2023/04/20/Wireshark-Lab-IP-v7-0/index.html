@@ -19,33 +19,33 @@
     <meta name="description" content="在本实验中, 我们将研究 IP 协议,重点关注IP datagram. 我们将通过分析在执行 traceroute 程序发送和接收的一系列 IP 数据报的过程来完成这个实验,我们将研究IP datagram 中的各个字段(fields)，并详细研究 IP fragmentation 的方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Wireshark Lab: IP v7.0">
-<meta property="og:url" content="http://example.com/2023/04/20/Wireshark-Lab-IP-v7-0/index.html">
+<meta property="og:url" content="https://github.com/trevoewu/trevoewu.github.io/2023/04/20/Wireshark-Lab-IP-v7-0/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="在本实验中, 我们将研究 IP 协议,重点关注IP datagram. 我们将通过分析在执行 traceroute 程序发送和接收的一系列 IP 数据报的过程来完成这个实验,我们将研究IP datagram 中的各个字段(fields)，并详细研究 IP fragmentation 的方法">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421113757555.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421113848009.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421113947335.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114009587.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114026434.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114245968.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114303180.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114317964.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114327978.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114340203.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114350725.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114403647.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114415389.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114431692.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114440735.png">
-<meta property="og:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421114449611.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421113757555.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421113848009.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421113947335.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114009587.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114026434.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114245968.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114303180.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114317964.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114327978.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114340203.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114350725.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114403647.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114415389.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114431692.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114440735.png">
+<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114449611.png">
 <meta property="article:published_time" content="2023-04-20T10:22:06.000Z">
 <meta property="article:modified_time" content="2023-04-21T03:44:49.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="computer network">
 <meta property="article:tag" content="lab">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/Wireshark-Lab-IP-v7-0/image-20230421113757555.png">
+<meta name="twitter:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421113757555.png">
 
 
 
@@ -65,7 +65,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
 
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/trevoewu/trevoewu.github.io/css/style.css">
 
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -91,9 +91,9 @@
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item navbar-logo" href="/">
+            <a class="navbar-item navbar-logo" href="/trevoewu/trevoewu.github.io/">
                 
-                <img src="/images/logo.png" alt="" height="28">
+                <img src="/trevoewu/trevoewu.github.io/images/logo.png" alt="" height="28">
                 
             </a>
             <div class="navbar-burger">
@@ -106,10 +106,10 @@
         <div class="navbar-menu navbar-start">
             
             <a class="navbar-item "
-               href="/archives">Archives</a>
+               href="/trevoewu/trevoewu.github.io/archives">Archives</a>
             
             <a class="navbar-item "
-               href="/about">About</a>
+               href="/trevoewu/trevoewu.github.io/about">About</a>
             
         </div>
         
@@ -121,7 +121,7 @@
             
             
             
-            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos">
                 
                 <i class="fab fa-github"></i>
                 
@@ -279,9 +279,9 @@
     
     <div class="columns is-variable is-1 is-multiline is-mobile">
     
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/computer-network/">#computer network</a></span>
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/trevoewu/trevoewu.github.io/tags/computer-network/">#computer network</a></span>
     
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/lab/">#lab</a></span>
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/trevoewu/trevoewu.github.io/tags/lab/">#lab</a></span>
     
     </div>
     
@@ -289,7 +289,7 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2023/04/20/Wireshark-lab-HTTP/">Wireshark lab HTTP</a>
+            <a href="/trevoewu/trevoewu.github.io/2023/04/20/Wireshark-lab-HTTP/">Wireshark lab HTTP</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-next">
@@ -331,7 +331,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2025 John Doe&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -340,7 +340,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos">
                     
                     GitHub
                     
@@ -497,7 +497,7 @@
 
 
 
-<script src="/js/script.js"></script>
+<script src="/trevoewu/trevoewu.github.io/js/script.js"></script>
 
 
     
@@ -523,13 +523,13 @@
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
-            CONTENT_URL: '/content.json',
+            CONTENT_URL: '/trevoewu/trevoewu.github.io/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
 
-<script src="/js/insight.js"></script>
+<script src="/trevoewu/trevoewu.github.io/js/insight.js"></script>
 
     
 </body>
