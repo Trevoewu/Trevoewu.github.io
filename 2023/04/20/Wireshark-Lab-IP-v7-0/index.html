@@ -23,29 +23,29 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="在本实验中, 我们将研究 IP 协议,重点关注IP datagram. 我们将通过分析在执行 traceroute 程序发送和接收的一系列 IP 数据报的过程来完成这个实验,我们将研究IP datagram 中的各个字段(fields)，并详细研究 IP fragmentation 的方法">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421113757555.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421113848009.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421113947335.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114009587.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114026434.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114245968.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114303180.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114317964.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114327978.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114340203.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114350725.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114403647.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114415389.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114431692.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114440735.png">
-<meta property="og:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421114449611.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421113757555.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421113848009.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421113947335.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114009587.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114026434.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114245968.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114303180.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114317964.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114327978.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114340203.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114350725.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114403647.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114415389.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114431692.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114440735.png">
+<meta property="og:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114449611.png">
 <meta property="article:published_time" content="2023-04-20T10:22:06.000Z">
 <meta property="article:modified_time" content="2023-04-21T03:44:49.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="computer network">
 <meta property="article:tag" content="lab">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/Wireshark-Lab-IP-v7-0/image-20230421113757555.png">
+<meta name="twitter:image" content="https://github.com/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421113757555.png">
 
 
 
@@ -157,22 +157,22 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><ul>
+        <ul>
 <li>Select the first ICMP Echo Request message sent by your computer, and expand the Internet Protocol part of the packet in the packet details window.(选择您的计算机发送的第一个 ICMP Echo Request 消息，并在数据包详细信息窗口中展开数据包的 Internet 协议部分)<br>不知道为什么, 我的电脑只能收到Time to live exceeded报文段.</li>
 </ul>
 <span id="more"></span>
 <p>结果是因为我在过滤了ICMP, 而<strong>traceroute默认使用UDP而不是ICMP</strong>, 所以只能收到路由器发给我的ICMP time to live exceeded 报文,告诉我的数据包被干掉了. </p>
 <p>tracert 默认使用 ICMP 包探测，traceroute 使用 UDP 包，也可以使用 ICMP 和 TCP 包探测, 带上参数-T即可.</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-I      Use ICMP ECHO instead of UDP datagrams.  (A synonym for "-P icmp").</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-I      Use ICMP ECHO instead of UDP datagrams.  (A synonym for &quot;-P icmp&quot;).</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">traceroute baidu.com 2000  </span><br><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash">使用baidu测试, 默认使用UDP, 数据报大小为2000byte</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">traceroute baidu.com 2000  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用baidu测试, 默认使用UDP, 数据报大小为2000byte</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>What is the IP address of your computer?</p>
 </li>
 <li><p>在 IP header 中，上层协议字段的值是多少?</p>
 <p>我的IP地址: 10.51.172.226 </p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421113757555.png" alt="image-20230421113757555"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421113757555.png" alt="image-20230421113757555"></p>
 <p>这是traceroute发送的第一个数据报, 可以得到以下信息: </p>
 <ul>
 <li>该数据报是IP数据报, 上层协议为UDP</li>
@@ -184,8 +184,8 @@
 <li><p>IP datagram 的有效负载中有多少 bytes? 说明如何 确定 payload bytes 的数。</p>
 </li>
 </ul>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421113848009.png" alt="image-20230421113848009"></p>
-<p>payload = Total Len - header Len = 1500 - 20 = 1480, 是的, 我直接发送了2000byte的报文</p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421113848009.png" alt="image-20230421113848009"></p>
+<p>payload &#x3D; Total Len - header Len &#x3D; 1500 - 20 &#x3D; 1480, 是的, 我直接发送了2000byte的报文</p>
 <ul>
 <li><p>此 IP 数据报是否已被分段(fragmented)?解释您如何确定数据报是否已被分段(fragmented)</p>
 <p>是的, 前文有提到, 这里不再赘述.</p>
@@ -197,21 +197,21 @@
 <ul>
 <li><p>在您的计算器发送的这一系列 ICMP 消息中，IP 数据报中的哪些字段总有改变</p>
 <p>使用</p>
-<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">traceroute -I gaia.cs.umass.edu -80</span><br><span class="line"><span class="hljs-comment"># 用作者给的网站测试, -I表示使用ICMP</span></span><br><span class="line"><span class="hljs-comment"># The default probe datagram length is 40 bytes[traceroute manual]</span></span><br><span class="line"><span class="hljs-comment"># 但是我使用作者提议用56作为数据报(ip datagrame)大小时, 收到以下警告: </span></span><br><span class="line"><span class="hljs-comment"># traceroute: packet length must be &gt; 71</span></span><br><span class="line"><span class="hljs-comment"># 所以这里数据报大小设为80, 实际上, 我使用不带数据报大小参数的命令时, 默认数据报大小为1380</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">traceroute -I gaia.cs.umass.edu -80</span><br><span class="line"><span class="comment"># 用作者给的网站测试, -I表示使用ICMP</span></span><br><span class="line"><span class="comment"># The default probe datagram length is 40 bytes[traceroute manual]</span></span><br><span class="line"><span class="comment"># 但是我使用作者提议用56作为数据报(ip datagrame)大小时, 收到以下警告: </span></span><br><span class="line"><span class="comment"># traceroute: packet length must be &gt; 71</span></span><br><span class="line"><span class="comment"># 所以这里数据报大小设为80, 实际上, 我使用不带数据报大小参数的命令时, 默认数据报大小为1380</span></span><br></pre></td></tr></table></figure>
 
 <p>再次抓包, 由于traceroute实际上会发送三个ICMP的数据报, 所以三个为一组.  所以可发现每一组的ID值差3, 当然是因为一组发了三个ICMP数据报啊..</p>
 </li>
 </ul>
 <p>第一个:</p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421113947335.png" alt="image-20230421113947335"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421113947335.png" alt="image-20230421113947335"></p>
 <p>第二个: </p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114009587.png" alt="image-20230421114009587"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114009587.png" alt="image-20230421114009587"></p>
 <p>第三个: </p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114026434.png" alt="image-20230421114026434"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114026434.png" alt="image-20230421114026434"></p>
 <p>可以发现, Id, TTL, Header checksum改变了.</p>
 <ul>
 <li><p>哪些字段保持不变? 哪个字段必须保持不变? 哪些字段必须更改? 为什么?</p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114245968.png" alt="image-20230421114245968"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114245968.png" alt="image-20230421114245968"></p>
 <ul>
 <li>Version, Header Length , TOS(Differentiate Services Field差异化服务领域), Flag, TTL, Protocol, SIP,DIP保持不变</li>
 <li>Version, Protocol, TOS, Header Len必须保持不变.</li>
@@ -226,7 +226,7 @@
 <li>下一步(数据包仍按来源地址排序)查找最近的(第一跳)路由器发送到您的计算器的一系列 ICMP TTL 超出的回复讯息。</li>
 <li>ID 字段和 TTL 字段的值是多少?</li>
 </ul>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114303180.png" alt="image-20230421114303180"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114303180.png" alt="image-20230421114303180"></p>
 <ul>
 <li><p>对于最近(第一跳)路由器发送到您的计算器的所有 ICMP TTL 超出的回复，这些值是否保持不变?为什么?</p>
 <p>TTL保持不变, 但ID改变了. TTL都为64(可以改变, 理论上可以为1, 因为第一台路由器到我的主机一跳可达)</p>
@@ -242,21 +242,21 @@
 <li>打印出碎片 IP 数据报的第二个片段。 IP 标头中的哪些信息表明这不是第一 个数据报片段? 是否还有更多的片段? 你是如何知道的?</li>
 </ul>
 <p>是的, 该消息被分片了, 可以通过flag字段看出, Fragmen Offset 为1480, 而More Fragment为0 ,告诉这是第二个message, 那第一个到哪里去了呢?</p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114317964.png" alt="image-20230421114317964"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114317964.png" alt="image-20230421114317964"></p>
 <p>Wireshark告诉我在frame 73, 于是我去寻找frame73</p>
 <p><em>73frame和74frame的payload 和 为 1980, 因为规定了ICMP的IP数据报大小为2000, 但由于IP头部的20byte, 实际的payload恰好为1980byte</em></p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114327978.png" alt="image-20230421114327978"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114327978.png" alt="image-20230421114327978"></p>
 <p>注意到发到第一个message竟然不是ICMPmessage, 而是一个IPdatagram</p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114340203.png" alt="image-20230421114340203"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114340203.png" alt="image-20230421114340203"></p>
 <p>打开IP头部, 我们发现, 这仍然是一个ICMP的数据报, 但是在IP的数据部分并没有ICMP头部.</p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114350725.png" alt="image-20230421114350725"></p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114403647.png" alt="image-20230421114403647"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114350725.png" alt="image-20230421114350725"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114403647.png" alt="image-20230421114403647"></p>
 <ul>
 <li><p>在第一个和第二个片段中，IP 标头中哪些字段发生了变化?</p>
 <p>第一个fregment: </p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114415389.png" alt="image-20230421114415389"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114415389.png" alt="image-20230421114415389"></p>
 <p>第二片: </p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114431692.png" alt="image-20230421114431692"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114431692.png" alt="image-20230421114431692"></p>
 <p>注意到红色部分发送了改变, 而蓝色部分没有改变, IP数据报用ID来标识多个片是否属于同一个IP数据报.</p>
 </li>
 </ul>
@@ -266,14 +266,14 @@
 <ul>
 <li><p>从原始数据报创建了多少个片?</p>
 <p>三个片</p>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114440735.png" alt="image-20230421114440735"></p>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114440735.png" alt="image-20230421114440735"></p>
 </li>
 <li><p>片段中 IP 标头中的哪些字段发生了变化?</p>
 <p>和上一个结论相同, 红色部分发送了改变, 而蓝色部分没有改变, IP数据报用ID来标识多个片是否属于同一个IP数据报.</p>
 </li>
 </ul>
-<p><img src="/Wireshark-Lab-IP-v7-0/image-20230421114449611.png" alt="image-20230421114449611"></p>
-</body></html>
+<p><img src="/trevoewu/trevoewu.github.io/Wireshark-Lab-IP-v7-0/image-20230421114449611.png" alt="image-20230421114449611"></p>
+
     
     </div>
     

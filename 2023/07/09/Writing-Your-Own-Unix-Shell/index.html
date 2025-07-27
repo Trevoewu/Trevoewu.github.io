@@ -143,7 +143,7 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>这个任务的目的是让你更加熟悉进程控制和信号传递的概念。你将通过编写一个简单的Unix shell程序来实现作业控制。</p>
+        <p>这个任务的目的是让你更加熟悉进程控制和信号传递的概念。你将通过编写一个简单的Unix shell程序来实现作业控制。</p>
 <span id="more"></span>
 
 <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><p>这个任务的目的是让你更加熟悉进程控制和信号传递的概念。你将通过编写一个简单的Unix shell程序来实现作业控制。</p>
@@ -153,7 +153,7 @@
 
 <h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><ol>
 <li><p>输入命令 <code>tar xvf shlab-handout.tar</code> 解压 tarfile文件。</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf shlab-handout.tar</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf shlab-handout.tar</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>键入 make 命令以编译和链接一些测试例程。</p>
 </li>
@@ -169,13 +169,13 @@
 </ol>
 </li>
 <li><p>每次修改 tsh.c 文件时，输入 make 重新编译它。要运行 shell，在命令行中输入 <code>./tsh</code>:</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">unix&gt; </span><span class="hljs-language-bash">./tsh</span></span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">unix&gt; </span><span class="language-bash">./tsh</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="tsh-规范"><a href="#tsh-规范" class="headerlink" title="tsh 规范"></a>tsh 规范</h2><p>您的 tsh shell 应该具有以下特性:</p>
 <ul>
 <li>提示符应该是字符串“ tsh &gt;”。</li>
 <li>用户输入的命令行应该包含一个名称，零个或多个参数，所有参数都由一个或多个空格分隔。 如果 name 是一个内置命令，那么 tsh 应该立即处理它并等待下一个命令行。否则，tsh 应该 假定 name 是一个可执行文件的路径，它在一个初始子进程的上下文中加载并运行该文件(在这个上下文中，术语 job 指的是这个初始子进程)。</li>
-<li>tsh 不需要支持管道(|)或 i/o 重定向(&lt; 和 &gt;)。</li>
+<li>tsh 不需要支持管道(|)或 i&#x2F;o 重定向(&lt; 和 &gt;)。</li>
 <li>键入 ctrl-c (ctrl-z)应该导致将 SIGINT (SIGTSTP)信号发送到前台作业，以及该作业的任何后代(例如，它分叉的任何子进程)。如果没有前台作业，那么该信号应该没有作用。</li>
 <li>如果命令行以 &amp; 结尾，那么 tsh 应该在后台运行作业。否则，它应该在前台运行作业。</li>
 <li>每个作业可以由进程 ID (PID)或作业 ID (JID)标识，后者是由 tsh 分配的一个正整数。Jid 应该 在命令行中用前缀“%”表示。例如，“% 5”表示 JID 5，“5”表示 PID 5。(我们已经为您提供了 操纵工作列表所需的所有例程）</li>
@@ -194,28 +194,28 @@
 <p><strong>Shell 驱动程序</strong></p>
 <p>sdriver.pl程序将shell作为子进程执行，根据跟踪文件的指示发送命令和信号，并捕获并显示shell的输出。</p>
 <p><strong>使用 -h 参数查找 sdriver.pl 的用法:</strong></p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">-&gt; </span><span class="hljs-language-bash">./sdriver.pl -h</span></span><br><span class="line"></span><br><span class="line">Usage: ./sdriver.pl [-hv] -t &lt;trace&gt; -s &lt;shellprog&gt; -a &lt;args&gt;</span><br><span class="line">Options:</span><br><span class="line">  -h            Print this message</span><br><span class="line">  -v            Be more verbose</span><br><span class="line">  -t &lt;trace&gt;    Trace file</span><br><span class="line">  -s &lt;shell&gt;    Shell program to test</span><br><span class="line">  -a &lt;args&gt;     Shell arguments</span><br><span class="line">  -g            Generate output for autograder</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">-&gt; </span><span class="language-bash">./sdriver.pl -h</span></span><br><span class="line"></span><br><span class="line">Usage: ./sdriver.pl [-hv] -t &lt;trace&gt; -s &lt;shellprog&gt; -a &lt;args&gt;</span><br><span class="line">Options:</span><br><span class="line">  -h            Print this message</span><br><span class="line">  -v            Be more verbose</span><br><span class="line">  -t &lt;trace&gt;    Trace file</span><br><span class="line">  -s &lt;shell&gt;    Shell program to test</span><br><span class="line">  -a &lt;args&gt;     Shell arguments</span><br><span class="line">  -g            Generate output for autograder</span><br></pre></td></tr></table></figure>
 
 
 
 <p>我们还提供了16个跟踪文件（trace{01-16}.txt），您将与Shell驱动程序一起使用这些文件来测试您的Shell的正确性。较低编号的跟踪文件执行非常简单的测试，而较高编号的测试执行更复杂的测试。</p>
 <p>您可以通过输入以下命令，在您的Shell上使用trace文件trace01.txt来运行Shell驱动程序：</p>
 <p>- a“-p”参数告诉你的 shell 忽略提示信息</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">unix&gt; </span><span class="hljs-language-bash">./sdriver.pl -t trace01.txt -s ./tsh -a <span class="hljs-string">"-p"</span></span> </span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">unix&gt; </span><span class="language-bash">./sdriver.pl -t trace01.txt -s ./tsh -a <span class="string">&quot;-p&quot;</span></span> </span><br></pre></td></tr></table></figure>
 
 <p>或者</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">unix&gt; </span><span class="hljs-language-bash">make test01</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">unix&gt; </span><span class="language-bash">make test01</span></span><br></pre></td></tr></table></figure>
 
 <p>类似地，您可以通过输入以下命令来运行跟踪驱动程序，并将其应用于参考Shell，以将结果与参考Shell进行比较：</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sdriver.pl -t trace01.txt -s ./tshref -a "-p"</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sdriver.pl -t trace01.txt -s ./tshref -a &quot;-p&quot;</span><br></pre></td></tr></table></figure>
 
 <p>或者</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make rtest01</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make rtest01</span><br></pre></td></tr></table></figure>
 
 <p>tshref.out提供了参考解决方案在所有跟踪文件上的输出。这可能比您手动在所有跟踪文件上运行Shell驱动程序更方便。</p>
 <p>跟踪文件的好处在于，它们生成的输出与您以交互方式运行Shell时获得的输出相同（除了一个标识跟踪的初始注释）。</p>
 <p>例如：</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">bass&gt; </span><span class="hljs-language-bash">make test15</span></span><br><span class="line">./sdriver.pl -t trace15.txt -s ./tsh -a "-p" #</span><br><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash">trace15.txt - Putting it all together</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="hljs-language-bash"></span></span><br><span class="line"><span class="hljs-language-bash">tsh&gt; ./bogus</span></span><br><span class="line">./bogus: Command not found.</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="hljs-language-bash">./myspin 10</span></span><br><span class="line">Job (9721) terminated by signal 2</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="hljs-language-bash">./myspin 3 &amp;</span></span><br><span class="line">[1] (9723) ./myspin 3 &amp;</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="hljs-language-bash">./myspin 4 &amp;</span></span><br><span class="line">5</span><br><span class="line">[2] (9725) ./myspin 4 &amp;</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="hljs-language-bash"><span class="hljs-built_in">jobs</span></span></span><br><span class="line">[1] (9723) Running ./myspin 3 &amp; [2] (9725) Running ./myspin 4 &amp; tsh&gt; fg %1</span><br><span class="line">Job [1] (9723) stopped by signal 20 tsh&gt; jobs</span><br><span class="line">[1] (9723) Stopped</span><br><span class="line">[2] (9725) Running</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="hljs-language-bash"><span class="hljs-built_in">bg</span> %3</span></span><br><span class="line"><span class="meta prompt_">%</span><span class="hljs-language-bash">3: No such job</span></span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="hljs-language-bash"><span class="hljs-built_in">bg</span> %1</span></span><br><span class="line">[1] (9723) ./myspin 3 &amp;</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="hljs-language-bash"><span class="hljs-built_in">jobs</span></span></span><br><span class="line">[1] (9723)</span><br><span class="line">[2] (9725)</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="hljs-language-bash"><span class="hljs-built_in">fg</span> %1</span></span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="hljs-language-bash">quit</span></span><br><span class="line"><span class="meta prompt_">bass&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">bass&gt; </span><span class="language-bash">make test15</span></span><br><span class="line">./sdriver.pl -t trace15.txt -s ./tsh -a &quot;-p&quot; #</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">trace15.txt - Putting it all together</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">tsh&gt; ./bogus</span></span><br><span class="line">./bogus: Command not found.</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="language-bash">./myspin 10</span></span><br><span class="line">Job (9721) terminated by signal 2</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="language-bash">./myspin 3 &amp;</span></span><br><span class="line">[1] (9723) ./myspin 3 &amp;</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="language-bash">./myspin 4 &amp;</span></span><br><span class="line">5</span><br><span class="line">[2] (9725) ./myspin 4 &amp;</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="language-bash"><span class="built_in">jobs</span></span></span><br><span class="line">[1] (9723) Running ./myspin 3 &amp; [2] (9725) Running ./myspin 4 &amp; tsh&gt; fg %1</span><br><span class="line">Job [1] (9723) stopped by signal 20 tsh&gt; jobs</span><br><span class="line">[1] (9723) Stopped</span><br><span class="line">[2] (9725) Running</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="language-bash"><span class="built_in">bg</span> %3</span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">3: No such job</span></span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="language-bash"><span class="built_in">bg</span> %1</span></span><br><span class="line">[1] (9723) ./myspin 3 &amp;</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="language-bash"><span class="built_in">jobs</span></span></span><br><span class="line">[1] (9723)</span><br><span class="line">[2] (9725)</span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="language-bash"><span class="built_in">fg</span> %1</span></span><br><span class="line"><span class="meta prompt_">tsh&gt; </span><span class="language-bash">quit</span></span><br><span class="line"><span class="meta prompt_">bass&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h2><ul>
 <li><p>仔细阅读教材第8章（异常控制流）的每一个词。</p>
@@ -224,7 +224,7 @@
 </li>
 <li><p><code>waitpid</code>、<code>kill</code>、<code>fork</code>、<code>execve</code>、<code>setpgid</code>和<code>sigprocmask</code>函数将非常有用。<code>waitpid</code>的<code>WUNTRACED</code>和<code>WNOHANG</code>选项也很有用。</p>
 </li>
-<li><p>在实现信号处理程序时，请确保使用<code>kill</code>函数的参数中的<code>"-pid"</code>而不是<code>"pid"</code>，向整个前台进程组发送<code>SIGINT</code>和<code>SIGTSTP</code>信号。<code>sdriver.pl</code>程序会检查此错误。</p>
+<li><p>在实现信号处理程序时，请确保使用<code>kill</code>函数的参数中的<code>&quot;-pid&quot;</code>而不是<code>&quot;pid&quot;</code>，向整个前台进程组发送<code>SIGINT</code>和<code>SIGTSTP</code>信号。<code>sdriver.pl</code>程序会检查此错误。</p>
 </li>
 <li><p>任务的一个棘手部分是决定<code>waitfg</code>和<code>sigchld</code>处理函数之间的工作分配。我们推荐以下方法：</p>
 <ul>
@@ -255,10 +255,10 @@
 </li>
 </ol>
 <p>我们期望您有良好的注释（5分），并检查每个系统调用的返回值（5分）。</p>
-<p>您的解决方案将在Linux机器上进行正确性测试，使用与实验目录中包含的Shell驱动程序和跟踪文件相同的工具。您的Shell应在这些跟踪文件上产生与参考Shell完全相同的输出，只有两个例外：<br>• PID可能会不同（会变化）。<br>• trace11.txt、trace12.txt和trace13.txt中/bin/ps命令的输出会因每次运行而有所不同。然而，在/bin/ps命令的输出中，mysplit进程的运行状态应保持一致。</p>
+<p>您的解决方案将在Linux机器上进行正确性测试，使用与实验目录中包含的Shell驱动程序和跟踪文件相同的工具。您的Shell应在这些跟踪文件上产生与参考Shell完全相同的输出，只有两个例外：<br>• PID可能会不同（会变化）。<br>• trace11.txt、trace12.txt和trace13.txt中&#x2F;bin&#x2F;ps命令的输出会因每次运行而有所不同。然而，在&#x2F;bin&#x2F;ps命令的输出中，mysplit进程的运行状态应保持一致。</p>
 </li>
 </ul>
-</body></html>
+
     
     </div>
     

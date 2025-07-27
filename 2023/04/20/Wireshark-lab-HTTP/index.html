@@ -139,18 +139,18 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>在这个实验中，我们会探索HTTP协议的几个方面：基本的GET/response交互，HTTP消息格式，检索大型HTML文件，检索具有嵌入对象的HTML文件，HTTP认证和安全性</p>
+        <p>在这个实验中，我们会探索HTTP协议的几个方面：基本的GET&#x2F;response交互，HTTP消息格式，检索大型HTML文件，检索具有嵌入对象的HTML文件，HTTP认证和安全性</p>
 <span id="more"></span>
 
-<h1 id="Wireshark实验-HTTP"><a href="#Wireshark实验-HTTP" class="headerlink" title="Wireshark实验 - HTTP"></a>Wireshark实验 - HTTP</h1><p><strong>官方英文文档：<a href="Wireshark_HTTP_v7.0"></a><a target="_blank" rel="noopener" href="http://www-net.cs.umass.edu/wireshark-labs/Wireshark_HTTP_v7.0.pdf">Wireshark_HTTP_v7.0</a></strong></p>
+<h1 id="Wireshark实验-HTTP"><a href="#Wireshark实验-HTTP" class="headerlink" title="Wireshark实验 - HTTP"></a>Wireshark实验 - HTTP</h1><p><strong>官方英文文档：<a href="Wireshark_HTTP_v7.0"><a target="_blank" rel="noopener" href="http://www-net.cs.umass.edu/wireshark-labs/Wireshark_HTTP_v7.0.pdf">Wireshark_HTTP_v7.0</a></a></strong></p>
 <p><strong>以下内容为笔者翻译：</strong></p>
 <hr>
 <p><strong>《计算机网络：自顶向下方法（第6版）》补充材料，J.F. Kurose and K.W. Ross</strong></p>
 <p>“不闻不若闻之，闻之不若见之，见之不若知之，知之不若行之。” ——中国谚语 </p>
 <p>© 2005-2012, J.F Kurose and K.W. Ross, All Rights Reserved</p>
 <hr>
-<p>在介Wireshark实验-入门里，我们已经初步使用了Wireshark包嗅探器，我们现在可以操作Wireshark来查看网络协议。在这个实验中，我们会探索HTTP协议的几个方面：基本的GET/response交互，HTTP消息格式，检索大型HTML文件，检索具有嵌入对象的HTML文件，HTTP认证和安全性。在开始这些实验之前，您可能想查看书中第2.2节。</p>
-<h3 id="1-基本HTTP-GET-response交互"><a href="#1-基本HTTP-GET-response交互" class="headerlink" title="1.基本HTTP GET/response交互"></a>1.基本HTTP GET/response交互</h3><p>我们开始探索HTTP，方法是下载一个非常简单的HTML文件<br>非常短，并且不包含嵌入的对象。执行以下操作：</p>
+<p>在介Wireshark实验-入门里，我们已经初步使用了Wireshark包嗅探器，我们现在可以操作Wireshark来查看网络协议。在这个实验中，我们会探索HTTP协议的几个方面：基本的GET&#x2F;response交互，HTTP消息格式，检索大型HTML文件，检索具有嵌入对象的HTML文件，HTTP认证和安全性。在开始这些实验之前，您可能想查看书中第2.2节。</p>
+<h3 id="1-基本HTTP-GET-response交互"><a href="#1-基本HTTP-GET-response交互" class="headerlink" title="1.基本HTTP GET&#x2F;response交互"></a>1.基本HTTP GET&#x2F;response交互</h3><p>我们开始探索HTTP，方法是下载一个非常简单的HTML文件<br>非常短，并且不包含嵌入的对象。执行以下操作：</p>
 <ol>
 <li>启动您的浏览器。</li>
 <li>启动Wireshark数据包嗅探器，如Wireshark实验-入门所述（还没开始数据包捕获）。在display-filter-specification窗口中输入“http”（只是字母，不含引号标记），这样就在稍后的分组列表窗口中只捕获HTTP消息。（我们只对HTTP协议感兴趣，不想看到其他所有的混乱的数据包）。</li>
@@ -167,30 +167,30 @@
 <p>通过查看HTTP GET和响应消息中的信息，回答以下问题。 在回答以下问题时，您应该打印出GET和响应消息（请参阅Wireshark-入门实验以获取信息），并指出您在消息中的哪个具体位置找到了回答以下问题的信息。 当您上交作业时，请注明输出，显示您在哪些地方表示了您的答案（例如，对于我们的课程，我们要求学生用笔标记纸质副本，或用彩色字体在电子副本的中注释文本）。</p>
 <ol>
 <li><p>您的浏览器是否运行HTTP版本1.0或1.1？服务器运行什么版本的HTTP？</p>
-<p>HTTP/1.1</p>
-<p>![image-20230416143533797](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416143533797.png)</p>
+<p>HTTP&#x2F;1.1</p>
+<p>![image-20230416143533797](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416143533797.png)</p>
 </li>
 <li><p>您的浏览器会从接服务器接受哪种语言（如果有的话）？</p>
-<p>![image-20230416144437584](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416144437584.png)</p>
+<p>![image-20230416144437584](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416144437584.png)</p>
 </li>
 <li><p>您的计算机的IP地址是什么？ gaia.cs.umass.edu服务器地址呢？</p>
-<p>![image-20230416143642203](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416143642203.png)</p>
+<p>![image-20230416143642203](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416143642203.png)</p>
 </li>
 <li><p>服务器返回到浏览器的状态代码是什么？</p>
-<p>![image-20230416144507009](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416144507009.png)</p>
+<p>![image-20230416144507009](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416144507009.png)</p>
 </li>
 <li><p>服务器上HTML文件的最近一次修改是什么时候？</p>
-<p>![image-20230416144603595](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416144603595.png)</p>
+<p>![image-20230416144603595](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416144603595.png)</p>
 </li>
 <li><p>服务器返回多少字节的内容到您的浏览器？</p>
-<p>![image-20230416144632313](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416144632313.png)</p>
+<p>![image-20230416144632313](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416144632313.png)</p>
 </li>
 <li><p>通过检查数据包内容窗口中的原始数据，你是否看到有协议头在数据包列表窗口中未显示？ 如果是，请举一个例子。</p>
 <p>没有</p>
 </li>
 </ol>
 <p>在您对上述问题5的回答中，您可能会惊讶地发现您刚才检索的文档在下载文档之前最近一次修改是一分钟前。 那是因为（对于这个特定文件），gaia.cs.umass.edu服务器将文件的最后修改时间设置为当前时间，并且每分钟执行一次。 因此，如果您在两次访问之间等待一分钟，则该文件看起来已被修改，因此您的浏览器将下载文档的“新”副本。</p>
-<h3 id="2-HTTP条件Get-response交互"><a href="#2-HTTP条件Get-response交互" class="headerlink" title="2.HTTP条件Get/response交互"></a>2.HTTP条件Get/response交互</h3><p>回顾书的第2.2.5节，大多数Web浏览器使用对象缓存，从而在检索HTTP对象时执行条件GET。执行以下步骤之前，请确保浏览器的缓存为空。（要在Firefox下执行此操作，请选择“工具” - &gt; “清除最近历史记录”，然后检查缓存框，对于Internet Explorer，选择“工具” - &gt;“Internet选项” - &gt;“删除文件”；这些操作将从浏览器缓存中删除缓存文件。 现在按下列步骤操作：</p>
+<h3 id="2-HTTP条件Get-response交互"><a href="#2-HTTP条件Get-response交互" class="headerlink" title="2.HTTP条件Get&#x2F;response交互"></a>2.HTTP条件Get&#x2F;response交互</h3><p>回顾书的第2.2.5节，大多数Web浏览器使用对象缓存，从而在检索HTTP对象时执行条件GET。执行以下步骤之前，请确保浏览器的缓存为空。（要在Firefox下执行此操作，请选择“工具” - &gt; “清除最近历史记录”，然后检查缓存框，对于Internet Explorer，选择“工具” - &gt;“Internet选项” - &gt;“删除文件”；这些操作将从浏览器缓存中删除缓存文件。 现在按下列步骤操作：</p>
 <ul>
 <li>启动您的浏览器，并确保您的浏览器的缓存被清除，如上所述。</li>
 <li>启动Wireshark数据包嗅探器。</li>
@@ -205,14 +205,14 @@
 <p>没有</p>
 </li>
 <li><p>检查服务器响应的内容。服务器是否显式返回文件的内容？ 你是怎么知道的？</p>
-<p>是的,![image-20230416150206500](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416150206500.png)</p>
+<p>是的,![image-20230416150206500](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416150206500.png)</p>
 </li>
 <li><p>现在，检查第二个HTTP GET请求的内容。 您在HTTP GET中看到了“IF-MODIFIED-SINCE:”行吗？ 如果是，“IF-MODIFIED-SINCE:”头后面包含哪些信息？</p>
 <p>看见了. 日期</p>
-<p>![image-20230416151334645](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416151334645.png)</p>
+<p>![image-20230416151334645](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416151334645.png)</p>
 </li>
 <li><p>针对第二个HTTP GET，从服务器响应的HTTP状态码和短语是什么？服务器是否明确地返回文件的内容？请解释。</p>
-<p>![image-20230416150249214](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416150249214.png)</p>
+<p>![image-20230416150249214](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416150249214.png)</p>
 </li>
 </ol>
 <h3 id="3-检索长文件"><a href="#3-检索长文件" class="headerlink" title="3.检索长文件"></a>3.检索长文件</h3><p>在我们到目前为止的例子中，检索的文档是简短的HTML文件。 接下来我们来看看当我们下载一个长的HTML文件时会发生什么。 按以下步骤操作：</p>
@@ -227,11 +227,11 @@
 <p>回答下列问题：</p>
 <ol start="12">
 <li><p>您的浏览器发送多少HTTP GET请求消息？哪个数据包包含了美国权利法案的消息？</p>
-<p>![image-20230416151626850](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416151626850.png)</p>
+<p>![image-20230416151626850](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416151626850.png)</p>
 <p>两个, 第一个</p>
 </li>
 <li><p>哪个数据包包含响应HTTP GET请求的状态码和短语？</p>
-<p>![image-20230416151652019](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416151652019.png)</p>
+<p>![image-20230416151652019](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416151652019.png)</p>
 <p>第二个</p>
 </li>
 <li><p>响应中的状态码和短语是什么？</p>
@@ -239,7 +239,7 @@
 </li>
 <li><p>需要多少包含数据的TCP段来执行单个HTTP响应和权利法案文本？</p>
 <p>4个TCP段</p>
-<p>![image-20230416151853132](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416151853132.png)</p>
+<p>![image-20230416151853132](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416151853132.png)</p>
 </li>
 </ol>
 <h3 id="4-具有嵌入对象的HTML文档"><a href="#4-具有嵌入对象的HTML文档" class="headerlink" title="4.具有嵌入对象的HTML文档"></a>4.具有嵌入对象的HTML文档</h3><p>现在我们已经看到Wireshark如何显示捕获的大型HTML文件的数据包流量，我们可以看看当浏览器使用嵌入的对象下载文件时，会发生什么，即包含其他对象的文件（在下面的例子中是图像文件） 的服务器。<br>执行以下操作：</p>
@@ -254,11 +254,11 @@
 <ol start="16">
 <li><p>您的浏览器发送了几个HTTP GET请求消息？ 这些GET请求发送到哪个IP地址？</p>
 <p>三个</p>
-<p>![image-20230416152201783](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416152201783.png)</p>
+<p>![image-20230416152201783](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416152201783.png)</p>
 </li>
 <li><p>浏览器从两个网站串行还是并行下载了两张图片？请说明。</p>
 <p>猜测为串行, 因为这两个GET请求发送有时间差</p>
-<p>![image-20230416152416694](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416152416694.png)</p>
+<p>![image-20230416152416694](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416152416694.png)</p>
 </li>
 </ol>
 <h3 id="5-HTTP认证"><a href="#5-HTTP认证" class="headerlink" title="5.HTTP认证"></a>5.HTTP认证</h3><p>最后，我们尝试访问受密码保护的网站，并检查网站的HTTP消息交换的序列。URL <a target="_blank" rel="noopener" href="http://gaia.cs.umass.edu/wireshark-labs/protected_pages/HTTP-wireshark-file5.html">http://gaia.cs.umass.edu/wireshark-labs/protected_pages/HTTP-wireshark-file5.html</a> 是受密码保护的。用户名是“wireshark-students”（不包含引号），密码是“network”（再次不包含引号）。所以让我们访问这个“安全的”受密码保护的网站。执行以下操作：</p>
@@ -273,18 +273,18 @@
 <p>回答下列问题：</p>
 <ol start="18">
 <li><p>对于您的浏览器的初始HTTP GET消息，服务器响应（状态码和短语）是什么响应？</p>
-<p>![image-20230416152712931](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416152712931.png)</p>
+<p>![image-20230416152712931](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416152712931.png)</p>
 <p>未授权</p>
 </li>
 <li><p>当您的浏览器第二次发送HTTP GET消息时，HTTP GET消息中包含哪些新字段？</p>
-<p>![image-20230416152814670](/Users/trevorwu/Library/Application Support/typora-user-images/image-20230416152814670.png)</p>
+<p>![image-20230416152814670](&#x2F;Users&#x2F;trevorwu&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230416152814670.png)</p>
 <p>一个Credentials: 的字段</p>
 </li>
 </ol>
-<p>您输入的用户名（wireshark-students）和密码（network）按照客户端HTTP GET消息中请求头的“Authorization: Basic ”的字符串（d2lyZXNoYXJrLXN0dWRlbnRzOm5ldHdvcms=）编码。虽然您的用户名和密码可能加密，但它们只是以一种称为Base64格式的格式进行编码。用户名和密码并没有加密！要确认这些，请访问 <a target="_blank" rel="noopener" href="http://www.motobit.com/util/base64-decoder-encoder.asp">http://www.motobit.com/util/base64-decoder-encoder.asp</a> 并输入base64编码的字符串d2lyZXNoYXJrLXN0dWRlbnRz 并进行解码。瞧！您已从Base64编码转换为ASCII编码，因此应该看到您的用户名！要查看密码，请输入字符串Om5ldHdvcms=的剩余部分，然后按解码。因为任何人都可以下载像Wireshark这样的工具，而且可以通过网络适配器嗅探数据包（不仅仅是自己的），任何人都可以从Base64转换为ASCII（你刚刚就这么做了！），所以你应该很清楚，WWW网站上的简单密码并不安全，除非采取其他措施。</p>
+<p>您输入的用户名（wireshark-students）和密码（network）按照客户端HTTP GET消息中请求头的“Authorization: Basic ”的字符串（d2lyZXNoYXJrLXN0dWRlbnRzOm5ldHdvcms&#x3D;）编码。虽然您的用户名和密码可能加密，但它们只是以一种称为Base64格式的格式进行编码。用户名和密码并没有加密！要确认这些，请访问 <a target="_blank" rel="noopener" href="http://www.motobit.com/util/base64-decoder-encoder.asp">http://www.motobit.com/util/base64-decoder-encoder.asp</a> 并输入base64编码的字符串d2lyZXNoYXJrLXN0dWRlbnRz 并进行解码。瞧！您已从Base64编码转换为ASCII编码，因此应该看到您的用户名！要查看密码，请输入字符串Om5ldHdvcms&#x3D;的剩余部分，然后按解码。因为任何人都可以下载像Wireshark这样的工具，而且可以通过网络适配器嗅探数据包（不仅仅是自己的），任何人都可以从Base64转换为ASCII（你刚刚就这么做了！），所以你应该很清楚，WWW网站上的简单密码并不安全，除非采取其他措施。</p>
 <p>wireshark自带解码….</p>
 <p>不要害怕！ 正如我们将在第8章中看到的，有一些方法可以使WWW访问更加安全。然而，我们显然需要一些超出基本HTTP认证框架的知识！</p>
-</body></html>
+
     
     </div>
     
