@@ -893,6 +893,16 @@ a, .content a, .article .article-meta a,
   font-size: 22px;
 }
 
+.article-entry h4 {
+  margin-top: 2.7em;
+  margin-bottom: 0.5em;
+}
+
+.article-entry h5 {
+  margin-top: 2.2em;
+  margin-bottom: 0.45em;
+}
+
 .article-entry [id] {
   scroll-margin-top: 88px;
 }
