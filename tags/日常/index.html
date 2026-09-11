@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
 <title>Tag: 日常 - Trevor&#39;s Blog</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#FAF9F5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5F4ED">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
@@ -32,7 +32,6 @@
 <link rel="icon" href="/favicon.png">
 
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
 
@@ -76,41 +75,46 @@
                     
                 
             </a>
-            <div class="navbar-burger">
+            <button class="navbar-burger" type="button" aria-label="展开导航" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
         
         <div class="navbar-menu navbar-start">
             
             <a class="navbar-item "
-               href="/archives">Archives</a>
+               href="/">文章</a>
             
             <a class="navbar-item "
-               href="/about">About</a>
+               href="/archives">归档</a>
+            
+            <a class="navbar-item "
+               href="/about">关于</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
             <a class="navbar-item search" title="Search" href="javascript:;">
-                <i class="fas fa-search"></i>
+                <span>搜索</span>
             </a>
             
             
-            
-            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-               
             
         </div>
     </div>
 </nav>
+
+<script>
+    document.querySelector('.navbar-burger').addEventListener('click', function () {
+        const expanded = this.getAttribute('aria-expanded') !== 'true';
+        this.setAttribute('aria-expanded', String(expanded));
+        this.classList.toggle('is-active', expanded);
+        document.querySelectorAll('.navbar-main .navbar-menu').forEach(menu => menu.classList.toggle('is-active', expanded));
+    });
+</script>
 
     <section class="section section-heading">
     <div class="container">
@@ -122,7 +126,7 @@
 <section class="section">
     <div class="container">
     
-        <article class="article content gallery" itemscope itemprop="blogPost">
+        <article class="article content article-preview" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
             <a href="/2023/04/21/%E7%BA%AA%E5%BF%B5%E6%8B%A5%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" itemprop="url">纪念拥有了自己的博客</a>
@@ -131,7 +135,7 @@
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
             
-                <time datetime="2023-04-21T12:28:51.000Z" itemprop="datePublished">Apr 21 2023</time>
+                <span>Apr 21 2023</span>
             
         </span>
         
@@ -148,12 +152,11 @@
         </span>
         
     </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>当一个由你亲手塑造的东西第一次呈现在你面前的时候, 那种兴奋感以及成就感是难以比拟的. </p>
-        <p class="article-more-link">
-            <a href="/2023/04/21/%E7%BA%AA%E5%BF%B5%E6%8B%A5%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/#more">Read More</a>
-        </p>
+    <div class="article-entry" itemprop="articleBody">
+    
+        <p class="article-summary">当一个由你亲手塑造的东西第一次呈现在你面前的时候, 那种兴奋感以及成就感是难以比拟的.</p>
+        <p class="article-more-link"><a href="/2023/04/21/%E7%BA%AA%E5%BF%B5%E6%8B%A5%E6%9C%89%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" aria-label="阅读全文：纪念拥有了自己的博客">阅读全文</a></p>
     
     </div>
     
@@ -163,8 +166,9 @@
 
 
 
+
     
-        <article class="article content gallery" itemscope itemprop="blogPost">
+        <article class="article content article-preview" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
             <a href="/2023/04/21/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/" itemprop="url">hexo插入图片问题</a>
@@ -173,7 +177,7 @@
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
             
-                <time datetime="2023-04-21T03:46:44.000Z" itemprop="datePublished">Apr 21 2023</time>
+                <span>Apr 21 2023</span>
             
         </span>
         
@@ -185,17 +189,17 @@
         </span>
         
     </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>昨天刚搭建完博客, 发现直接写markdown, hexo 生成后图片全部都没法显示了, 毕竟图片都在本地, 以绝对路径的方式存储的, markdown的路径的hexo的路径不匹配. </p>
-        <p class="article-more-link">
-            <a href="/2023/04/21/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/#more">Read More</a>
-        </p>
+    <div class="article-entry" itemprop="articleBody">
+    
+        <p class="article-summary">昨天刚搭建完博客, 发现直接写markdown, hexo 生成后图片全部都没法显示了, 毕竟图片都在本地, 以绝对路径的方式存储的, markdown的路径的hexo的路径不匹配.</p>
+        <p class="article-more-link"><a href="/2023/04/21/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/" aria-label="阅读全文：hexo插入图片问题">阅读全文</a></p>
     
     </div>
     
     
 </article>
+
 
 
 
@@ -219,9 +223,16 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/Trevoewu">
                     
                     GitHub
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="友链" href="/links">
+                    
+                    友链
                     
                 </a>
                 

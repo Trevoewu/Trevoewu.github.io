@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
 <title>订阅费膨胀 - Trevor&#39;s Blog</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#FAF9F5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5F4ED">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
@@ -37,7 +37,6 @@
 <link rel="icon" href="/favicon.png">
 
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
 
@@ -81,41 +80,46 @@
                     
                 
             </a>
-            <div class="navbar-burger">
+            <button class="navbar-burger" type="button" aria-label="展开导航" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
         
         <div class="navbar-menu navbar-start">
             
             <a class="navbar-item "
-               href="/archives">Archives</a>
+               href="/">文章</a>
             
             <a class="navbar-item "
-               href="/about">About</a>
+               href="/archives">归档</a>
+            
+            <a class="navbar-item "
+               href="/about">关于</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
             <a class="navbar-item search" title="Search" href="javascript:;">
-                <i class="fas fa-search"></i>
+                <span>搜索</span>
             </a>
             
             
-            
-            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-               
             
         </div>
     </div>
 </nav>
+
+<script>
+    document.querySelector('.navbar-burger').addEventListener('click', function () {
+        const expanded = this.getAttribute('aria-expanded') !== 'true';
+        this.setAttribute('aria-expanded', String(expanded));
+        this.classList.toggle('is-active', expanded);
+        document.querySelectorAll('.navbar-main .navbar-menu').forEach(menu => menu.classList.toggle('is-active', expanded));
+    });
+</script>
 
     <section class="section">
     <div class="container">
@@ -128,7 +132,7 @@
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
             
-                <time datetime="2025-07-23T23:34:39.000Z" itemprop="datePublished">Jul 24 2025</time>
+                <span>Jul 24 2025</span>
             
         </span>
         
@@ -140,7 +144,8 @@
         </span>
         
     </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+    <div class="article-entry" itemprop="articleBody">
     
         <p>在我还在读小学的时候，唯一开过的网络服务就是QQ会员了。红色的昵称显示，在好友列表里优先显示，还有形形色色的聊天气泡，主页空间装扮。不过那时候也没钱，用的都是各种网上找的bug开上的。不过也算是第一次的订阅经历吧。</p>
 <span id="more"></span>
@@ -450,6 +455,7 @@
 
 </div>
 
+
     </div>
 </section>
     <footer class="footer">
@@ -467,9 +473,16 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/Trevoewu">
                     
                     GitHub
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="友链" href="/links">
+                    
+                    友链
                     
                 </a>
                 

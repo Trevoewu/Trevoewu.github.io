@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
 <title>Tag: 建议 - Trevor&#39;s Blog</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#FAF9F5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5F4ED">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
@@ -32,7 +32,6 @@
 <link rel="icon" href="/favicon.png">
 
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
 
@@ -76,41 +75,46 @@
                     
                 
             </a>
-            <div class="navbar-burger">
+            <button class="navbar-burger" type="button" aria-label="展开导航" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
         
         <div class="navbar-menu navbar-start">
             
             <a class="navbar-item "
-               href="/archives">Archives</a>
+               href="/">文章</a>
             
             <a class="navbar-item "
-               href="/about">About</a>
+               href="/archives">归档</a>
+            
+            <a class="navbar-item "
+               href="/about">关于</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
             <a class="navbar-item search" title="Search" href="javascript:;">
-                <i class="fas fa-search"></i>
+                <span>搜索</span>
             </a>
             
             
-            
-            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-               
             
         </div>
     </div>
 </nav>
+
+<script>
+    document.querySelector('.navbar-burger').addEventListener('click', function () {
+        const expanded = this.getAttribute('aria-expanded') !== 'true';
+        this.setAttribute('aria-expanded', String(expanded));
+        this.classList.toggle('is-active', expanded);
+        document.querySelectorAll('.navbar-main .navbar-menu').forEach(menu => menu.classList.toggle('is-active', expanded));
+    });
+</script>
 
     <section class="section section-heading">
     <div class="container">
@@ -122,7 +126,7 @@
 <section class="section">
     <div class="container">
     
-        <article class="article content gallery" itemscope itemprop="blogPost">
+        <article class="article content article-preview" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
             <a href="/2023/11/09/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E4%BB%AC%E7%9A%84%E5%BB%BA%E8%AE%AE/" itemprop="url">回到过去，我会对自己说</a>
@@ -131,7 +135,7 @@
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
             
-                <time datetime="2023-11-09T04:07:08.000Z" itemprop="datePublished">Nov 9 2023</time>
+                <span>Nov 9 2023</span>
             
         </span>
         
@@ -148,17 +152,17 @@
         </span>
         
     </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>这是很难想象的事，大学生活就这么快结束了。这篇文章本来是学校要求写的给学弟学妹的建议，但对这样一个没什么并不成功的我来说，我想我是没什么资格建议的。</p>
-        <p class="article-more-link">
-            <a href="/2023/11/09/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E4%BB%AC%E7%9A%84%E5%BB%BA%E8%AE%AE/#more">Read More</a>
-        </p>
+    <div class="article-entry" itemprop="articleBody">
+    
+        <p class="article-summary">我起初想告诉自己：你要去学会“翻墙”学会在广阔的互联网中学习知识，掌握一门计算机语言，坚持英语学习。你要学会使用vscode，vim，markdown，docker，git，terminal。学会租一个服务器，买一个域名，在github上搭建自己的仓库，建立自己的博客。你要好好学高等数学，现代代数…</p>
+        <p class="article-more-link"><a href="/2023/11/09/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E4%BB%AC%E7%9A%84%E5%BB%BA%E8%AE%AE/" aria-label="阅读全文：回到过去，我会对自己说">阅读全文</a></p>
     
     </div>
     
     
 </article>
+
 
 
 
@@ -182,9 +186,16 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/Trevoewu">
                     
                     GitHub
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="友链" href="/links">
+                    
+                    友链
                     
                 </a>
                 

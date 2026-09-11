@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
 <title>hexo插入图片问题 - Trevor&#39;s Blog</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#FAF9F5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5F4ED">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
@@ -42,7 +42,6 @@
 <link rel="icon" href="/favicon.png">
 
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
 
@@ -86,41 +85,46 @@
                     
                 
             </a>
-            <div class="navbar-burger">
+            <button class="navbar-burger" type="button" aria-label="展开导航" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
         
         <div class="navbar-menu navbar-start">
             
             <a class="navbar-item "
-               href="/archives">Archives</a>
+               href="/">文章</a>
             
             <a class="navbar-item "
-               href="/about">About</a>
+               href="/archives">归档</a>
+            
+            <a class="navbar-item "
+               href="/about">关于</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
             <a class="navbar-item search" title="Search" href="javascript:;">
-                <i class="fas fa-search"></i>
+                <span>搜索</span>
             </a>
             
             
-            
-            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-               
             
         </div>
     </div>
 </nav>
+
+<script>
+    document.querySelector('.navbar-burger').addEventListener('click', function () {
+        const expanded = this.getAttribute('aria-expanded') !== 'true';
+        this.setAttribute('aria-expanded', String(expanded));
+        this.classList.toggle('is-active', expanded);
+        document.querySelectorAll('.navbar-main .navbar-menu').forEach(menu => menu.classList.toggle('is-active', expanded));
+    });
+</script>
 
     <section class="section">
     <div class="container">
@@ -133,7 +137,7 @@
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
             
-                <time datetime="2023-04-21T03:46:44.000Z" itemprop="datePublished">Apr 21 2023</time>
+                <span>Apr 21 2023</span>
             
         </span>
         
@@ -145,7 +149,13 @@
         </span>
         
     </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+    <details class="reading-toc">
+        <summary>文章目录</summary>
+        <nav aria-label="文章目录"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E4%BF%AE%E6%94%B9hexo%E7%9A%84%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-config-yml"><span class="toc-text">第一步 修改hexo的站点配置文件_config.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E7%BC%96%E5%86%99%E8%B7%AF%E5%BE%84%E6%9B%BF%E6%8D%A2%E8%84%9A%E6%9C%AC"><span class="toc-text">第二步, 编写路径替换脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-%E6%90%AD%E9%85%8Dtypora%E6%89%8D%E6%98%AF%E6%9C%80%E4%BD%B3"><span class="toc-text">第三步, 搭配typora才是最佳</span></a></li></ol></nav>
+    </details>
+    
+    <div class="article-entry" itemprop="articleBody">
     
         <p>昨天刚搭建完博客, 发现直接写markdown, hexo 生成后图片全部都没法显示了, 毕竟图片都在本地, 以绝对路径的方式存储的, markdown的路径的hexo的路径不匹配. </p>
 <span id="more"></span>
@@ -489,6 +499,7 @@
 
 </div>
 
+
     </div>
 </section>
     <footer class="footer">
@@ -506,9 +517,16 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/Trevoewu">
                     
                     GitHub
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="友链" href="/links">
+                    
+                    友链
                     
                 </a>
                 

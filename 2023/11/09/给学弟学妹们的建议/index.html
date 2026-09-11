@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
 <title>回到过去，我会对自己说 - Trevor&#39;s Blog</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#FAF9F5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5F4ED">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
@@ -37,7 +37,6 @@
 <link rel="icon" href="/favicon.png">
 
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
 
@@ -81,41 +80,46 @@
                     
                 
             </a>
-            <div class="navbar-burger">
+            <button class="navbar-burger" type="button" aria-label="展开导航" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
         
         <div class="navbar-menu navbar-start">
             
             <a class="navbar-item "
-               href="/archives">Archives</a>
+               href="/">文章</a>
             
             <a class="navbar-item "
-               href="/about">About</a>
+               href="/archives">归档</a>
+            
+            <a class="navbar-item "
+               href="/about">关于</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
             <a class="navbar-item search" title="Search" href="javascript:;">
-                <i class="fas fa-search"></i>
+                <span>搜索</span>
             </a>
             
             
-            
-            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-               
             
         </div>
     </div>
 </nav>
+
+<script>
+    document.querySelector('.navbar-burger').addEventListener('click', function () {
+        const expanded = this.getAttribute('aria-expanded') !== 'true';
+        this.setAttribute('aria-expanded', String(expanded));
+        this.classList.toggle('is-active', expanded);
+        document.querySelectorAll('.navbar-main .navbar-menu').forEach(menu => menu.classList.toggle('is-active', expanded));
+    });
+</script>
 
     <section class="section">
     <div class="container">
@@ -128,7 +132,7 @@
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
             
-                <time datetime="2023-11-09T04:07:08.000Z" itemprop="datePublished">Nov 9 2023</time>
+                <span>Nov 9 2023</span>
             
         </span>
         
@@ -145,7 +149,13 @@
         </span>
         
     </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+    <details class="reading-toc">
+        <summary>文章目录</summary>
+        <nav aria-label="文章目录"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0%E5%A4%A7%E4%B8%80%EF%BC%8C%E7%8E%B0%E5%9C%A8%E7%9A%84%E6%88%91%E5%8F%88%E4%BC%9A%E5%AF%B9%E8%87%AA%E5%B7%B1%E8%AF%B4%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-text">回到大一，现在的我又会对自己说什么呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A7%E4%B8%80%E5%A4%A7%E4%BA%8C%E4%B8%A4%E5%B9%B4%EF%BC%8C%E6%94%BE%E5%BC%83%E4%BA%86%E8%87%AA%E5%B7%B1%E9%AB%98%E4%B8%AD%E4%B8%80%E7%9B%B4%E8%83%8C%E5%8D%95%E8%AF%8D%E7%9A%84%E4%B9%A0%E6%83%AF%EF%BC%8C%E6%98%AF%E6%88%91%E7%9B%AE%E5%89%8D%E5%94%AF%E4%B8%80%E9%81%97%E6%86%BE%E7%9A%84%E4%BA%8B"><span class="toc-text">大一大二两年，放弃了自己高中一直背单词的习惯，是我目前唯一遗憾的事</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%BB%E4%B9%B0Mac%EF%BC%8C%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%8D%B1%E9%99%A9%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-text">去买Mac，这是一个危险的建议</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Mac%E7%A9%B6%E7%AB%9F%E5%B8%A6%E4%BA%86%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-text">Mac究竟带了什么呢？</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A7%E5%AD%A6%E7%A9%B6%E7%AB%9F%E7%BB%99%E6%88%91%E5%B8%A6%E6%9D%A5%E4%BA%86%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F%E6%88%96%E8%80%85%E6%98%AF%E5%A4%A7%E5%AD%A6%E7%BB%99%E6%88%91%E6%8F%90%E4%BE%9B%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">大学究竟给我带来了什么呢？或者是大学给我提供了什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%9C%AC%E7%A7%91%E6%95%99%E8%82%B2%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E6%98%AF%E6%88%91%E5%9B%BD%E4%BC%98%E8%B4%A8%E6%95%99%E6%9D%90%E7%9A%84%E7%BC%BA%E5%A4%B1"><span class="toc-text">另一个本科教育的问题，是我国优质教材的缺失</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E6%97%B6%E5%B8%B8%E5%B8%8C%E6%9C%9B%E8%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA%E7%BA%AF%E7%B2%B9%E7%9A%84%E6%97%B6%E9%97%B4%EF%BC%8C%E4%B8%80%E4%B8%AA%E4%B8%8D%E8%A2%AB%E6%89%93%E6%89%B0%E7%9A%84%E6%97%B6%E9%97%B4%EF%BC%8C%E4%BE%9B%E6%88%91%E5%AD%A6%E4%B9%A0"><span class="toc-text">我时常希望能有一个纯粹的时间，一个不被打扰的时间，供我学习</span></a></li></ol></nav>
+    </details>
+    
+    <div class="article-entry" itemprop="articleBody">
     
         <p>这是很难想象的事，大学生活就这么快结束了。这篇文章本来是学校要求写的给学弟学妹的建议，但对这样一个没什么并不成功的我来说，我想我是没什么资格建议的。</p>
 <span id="more"></span>
@@ -473,6 +483,7 @@
 
 </div>
 
+
     </div>
 </section>
     <footer class="footer">
@@ -490,9 +501,16 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/Trevoewu">
                     
                     GitHub
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="友链" href="/links">
+                    
+                    友链
                     
                 </a>
                 

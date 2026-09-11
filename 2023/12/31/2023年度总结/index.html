@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
 <title>2023年度总结 - Trevor&#39;s Blog</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#FAF9F5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5F4ED">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
@@ -43,7 +43,6 @@
 <link rel="icon" href="/favicon.png">
 
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
 
@@ -87,41 +86,46 @@
                     
                 
             </a>
-            <div class="navbar-burger">
+            <button class="navbar-burger" type="button" aria-label="展开导航" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
         
         <div class="navbar-menu navbar-start">
             
             <a class="navbar-item "
-               href="/archives">Archives</a>
+               href="/">文章</a>
             
             <a class="navbar-item "
-               href="/about">About</a>
+               href="/archives">归档</a>
+            
+            <a class="navbar-item "
+               href="/about">关于</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
             <a class="navbar-item search" title="Search" href="javascript:;">
-                <i class="fas fa-search"></i>
+                <span>搜索</span>
             </a>
             
             
-            
-            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-               
             
         </div>
     </div>
 </nav>
+
+<script>
+    document.querySelector('.navbar-burger').addEventListener('click', function () {
+        const expanded = this.getAttribute('aria-expanded') !== 'true';
+        this.setAttribute('aria-expanded', String(expanded));
+        this.classList.toggle('is-active', expanded);
+        document.querySelectorAll('.navbar-main .navbar-menu').forEach(menu => menu.classList.toggle('is-active', expanded));
+    });
+</script>
 
     <section class="section">
     <div class="container">
@@ -134,7 +138,7 @@
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
             
-                <time datetime="2023-12-31T14:48:03.000Z" itemprop="datePublished">Dec 31 2023</time>
+                <span>Dec 31 2023</span>
             
         </span>
         
@@ -151,7 +155,13 @@
         </span>
         
     </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+    <details class="reading-toc">
+        <summary>文章目录</summary>
+        <nav aria-label="文章目录"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E9%95%BF%E7%99%BD%E5%B1%B1%E6%97%85%E6%B8%B8%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%95%99%E8%AE%AD"><span class="toc-text">去长白山旅游——第一次教训</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Her"><span class="toc-text">Her</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Animation"><span class="toc-text">Animation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%80%83%E7%A0%94"><span class="toc-text">考研</span></a></li></ol></nav>
+    </details>
+    
+    <div class="article-entry" itemprop="articleBody">
     
         <p>​	</p>
 <p>​	现在回过头来看，真的很神奇。一开始我甚至是连神奇树屋都看不懂的。那些简单的单词，组成的句子我竟然看不懂。以前只记得每个单词的意思，做题的话在脑海里翻译成中文就能做了。现在看书上这些口语话的表达这招就不管用了，真的是单纯认识却不知道意思了，更何况这些句子都是一些简单句，也不存在语法障碍。看来是真的缺少native那种儿童口语化英语英文输入了。</p>
@@ -519,6 +529,7 @@
 
 </div>
 
+
     </div>
 </section>
     <footer class="footer">
@@ -536,9 +547,16 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/Trevoewu">
                     
                     GitHub
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-black" title="友链" href="/links">
+                    
+                    友链
                     
                 </a>
                 
